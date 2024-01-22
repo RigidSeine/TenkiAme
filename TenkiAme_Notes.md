@@ -11,6 +11,25 @@ ViewData["Name"] = "Gerbil";
 ```
 - This can then be referenced in a similar way in the View Template by preceding the reference with an @ (since @ precedes any C# behaviour).
 
+#Using an API key to Make a Call
+- Include it as a header in the request. APIs keep changing what they call the header but it usually is some form of "api-key" or "authentication". Just check the documentation.
+```C#
+httpClient.DefaultRequestHeaders.Add("x-api-key", "11111");
+```
+
+#Making POST Requests
+- When putting together the classes that form the JSON input, you must be very deliberate to match the format EXACTLY as the documentation has it. I.e. Check for JSON arrays (C# Lists), check for case-sensitivity AND DEFINITELY CHECK FOR STUPID DATE FORMATS.
+-If case-sensentivity is an issue, you can use a Newtonsoft attribute to modify it to what it should be when it gets converted to JSON. In the example below, the JSON key needs to be in camelCase.
+```C#
+[JsonProperty]("from")
+public DateTime From {get; set;} 
+```
+- Alternatively, sometimes it's not enough to be using ISO 8601 date time format in JSON Sometimes, the API will include a string literal in the datetime for whatever reason. 2024-01-21T00:00:00 IS NOT THE SAME AS 2024-01-21T00:00:00.000Z. Therefore, just create some Newtonsoft.JsonSerializerSettings and change the dateformat to include the literal.
+```C#
+var jsonSettings = new JsonSerializerSettings { DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffZ" };
+var jsonData = JsonConvert.SerializeObject(pointPostData, jsonSettings);
+var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+```
 #Routing
 - Defines how each part of the web app's API can be accessed.
 E.g. Placing
