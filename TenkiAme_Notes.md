@@ -30,6 +30,10 @@ var jsonSettings = new JsonSerializerSettings { DateFormatString = "yyyy-MM-ddTH
 var jsonData = JsonConvert.SerializeObject(pointPostData, jsonSettings);
 var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 ```
+
+- After making the call, you can return a response. If the call was successful, then you can read the response JSON as a string and then deserialise using a class that has the properties you want to store in the response JSON.
+  - The "container" classes don't need to have all the attributes in the JSON. It can simply have the attributes you want to store.
+
 #Routing
 - Defines how each part of the web app's API can be accessed.
 E.g. Placing
