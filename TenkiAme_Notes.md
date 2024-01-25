@@ -34,13 +34,30 @@ var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 - After making the call, you can return a response. If the call was successful, then you can read the response JSON as a string and then deserialise using a class that has the properties you want to store in the response JSON.
   - The "container" classes don't need to have all the attributes in the JSON. It can simply have the attributes you want to store.
 
-#Routing
+#Razor Pages vs. MVC 
+- To use Razor Pages instead of MVC, include the following:
+```C#
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddRazorPages();
+var app = builder.Build();
+app.MapRazorPages();
+```
+-Otherwise to use MVC:
+```C#
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+var app = builder.Build();
+app.MapControllers(); //And or app.MapControllerRoute(name: "default",pattern: {controller=Home}/{action=Index}");
+```
+- You can technically use MVC without ```AddControllersWithViews()``` but you miss a lot of fundamental functionality.
+
+#Routing - MVC
 - Defines how each part of the web app's API can be accessed.
 E.g. Placing
 ```C#
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/");
 ```
 In the Program.cs file allows the following code in the HomeController class to be called using localport([PORTCODE])/Home. 
 ```C#
