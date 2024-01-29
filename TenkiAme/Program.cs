@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using TenkiAme.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+//builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<TenkiAmeContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TenkiAmeContext") ?? throw new InvalidOperationException("Connection string 'TenkiAmeContext' not found.")));
 
 var app = builder.Build();
 
@@ -18,8 +24,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}");
+
+app.MapControllers();
+
 app.UseAuthorization();
 
-app.MapRazorPages();
+//app.MapRazorPages();
 
 app.Run();
