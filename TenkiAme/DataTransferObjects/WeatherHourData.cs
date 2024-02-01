@@ -1,4 +1,6 @@
-﻿namespace TenkiAme.DataTransferObjects
+﻿using Microsoft.VisualStudio.TextTemplating;
+
+namespace TenkiAme.DataTransferObjects
 {
     public class WeatherHourData
     {
@@ -12,6 +14,11 @@
             Time = time;
             Rainfall = rainfall;
             Temperature = temperature;
+        }
+
+        public string PrintToPage()
+        {
+            return "Time: " + Time.ToString() + "; Rain: " + Rainfall.ToString() + "; Temperature: " + Temperature.ToString();
         }
     }
 }

@@ -20,33 +20,36 @@ namespace TenkiAme.Models
         public async Task InitializeAsync()
         { 
             await GetVariables();
-            //TODO: Call CreateHourlyTimeSeries();
+            await CreateHourlyTimeSeries();
         }
 
         //Get weather data from the MetOcean API
         private async Task GetVariables()
         {
-            var _weatherAPIService = new WeatherAPIService();
+            _weatherAPIService = new WeatherAPIService();
             var weatherResponse = await _weatherAPIService.GetPointTimeSeries();
             WeatherVariables = weatherResponse.Variables;
         }
 
         //Breakdown 
-        private void CreateHourlyTimeSeries ()
+        private async Task CreateHourlyTimeSeries ()
         {
             List<WeatherHourData> weatherHours = new List<WeatherHourData>();
 
             var weatherTimeSeries = _weatherAPIService.WeatherTimeSeries.GetTimeSeriesAsList();
-            //TODO: Loop through WeatherVariables and build out each hour
-            //Append each hour to the list
+            var rainData = WeatherVariables.GetValueOrDefault("precipitation.rate").Data;
+            var temperatureData = WeatherVariables.GetValueOrDefault("air.temperature.at-2m").Data;
+
+            //TODO: Solve Nullexceptions
             for(int i = 0; i < _numOfDataPoints; i++)
             {
-                foreach(var variable in WeatherVariables)
-                {
-                    return;//build out each hour
-                }
+                var weatherHour = new WeatherHourData(weatherTimeSeries[i], rainData[i], temperatureData[i]);
+                weatherHours.Add(weatherHour);
             }
+
             WeatherHours = weatherHours;
+
+            Util.PrintD("WEAEHTSJKGNSKGJNSJKG ==========================" + WeatherHours.ToString());
         }
     }
 }
