@@ -1,6 +1,6 @@
 ﻿namespace TenkiAme.wwwroot
 {
-    public static class Util
+    public static class DevUtil
     {
         public static void PrintD(string msg)
         {

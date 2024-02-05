@@ -27,9 +27,9 @@ namespace TenkiAme.DataTransferObjects
             int interval = Int32.Parse(this.Interval.Replace("h", ""));
             DateTime from = this.From; //Copy
 
-            for (int i = 0; i < this.Repeat; i++)
+            for (int i = 0; i < this.Repeat+1; i++)
             {
-                list.Append(from);
+                list.Add(from);
                 from = from.AddHours(1);
             }
 

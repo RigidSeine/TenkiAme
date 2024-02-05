@@ -10,4 +10,8 @@
 <h2>Home View Index</h2>
 
 <p>Home View Hello.</p>
-<p>@Model.WeatherVariables.GetValueOrDefault("air.temperature.at-2m").ToString()</p>
+<p>@foreach (var hour in Model.WeatherHours)
+    {
+        <p>@hour.PrintToPage();</p>
+    }
+</p>

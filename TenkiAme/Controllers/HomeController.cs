@@ -13,7 +13,7 @@ namespace TenkiAme.Controllers
         public async Task<IActionResult> Index()
         {
             var model = new WeatherModel();
-            await model.InitializeAsync();
+            await Task.WhenAll(model.InitializeAsync());
             return View(model);
         }
 

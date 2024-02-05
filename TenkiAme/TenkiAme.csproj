@@ -7,15 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\Util.cs" />
+    <Content Remove="wwwroot\DevUtil.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\Util.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="wwwroot\Util.cs" />
+    <Compile Include="wwwroot\DevUtil.cs" />
   </ItemGroup>
 
   <ItemGroup>
