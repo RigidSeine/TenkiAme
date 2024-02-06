@@ -4,6 +4,7 @@ namespace TenkiAme.DataTransferObjects
 {
     public class WeatherTimeSeries
     {
+        //TODO?: Function converting int hours to string intervals
         [JsonProperty("from")]
         public DateTime From {  get; set; }
         

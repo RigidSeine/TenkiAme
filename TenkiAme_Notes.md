@@ -85,5 +85,22 @@ Alternatively, (or even concurrently) you can use ```app.MapControllers()``` in 
 - Routing is part of this (since you need to route an HTTP request to some form of behaviour of the API).
 - A lot of the Middleware methods start with "app.Use(...)"
 
+#Async
+- You can use Task.WhenAll(GetVariables()); if you want to perform async calls in sequence.
 
+#LINQ
+##Where()
+- Similar to SQL in that foreach element (instead of record) the condition must return true to be selected.
+- Can also use the ```index``` and ```value``` keywords to reference the index and value of the enumerable collection that Where() is being used on.
+```C#
+            foreach (var day in hoursByDay)
+            {
+                //Group the rain data by day - aka foreach index of rainData check if the
+                //corresponding value in weatherTimeSeries matches the current group's date
+                //and return the value (precipitation rate) if so
+                var rainByDay = rainData.Where((value, index) => weatherTimeSeries[index].Date == day.Key).ToList();
 
+                //Do the same for temperature
+                var tempByDay = temperatureData.Where((value, index) => )
+            }
+```

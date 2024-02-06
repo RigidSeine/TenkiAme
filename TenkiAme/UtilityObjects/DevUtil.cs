@@ -1,4 +1,4 @@
-﻿namespace TenkiAme.wwwroot
+﻿namespace TenkiAme.UtilityObjects
 {
     public static class DevUtil
     {

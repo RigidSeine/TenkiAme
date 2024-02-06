@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TextTemplating;
-
+﻿
 namespace TenkiAme.DataTransferObjects
 {
     public class WeatherHourData
@@ -18,7 +17,7 @@ namespace TenkiAme.DataTransferObjects
 
         public string PrintToPage()
         {
-            return "Time: " + Time.ToString() + "; Rain: " + Rainfall.ToString() + "; Temperature: " + Temperature.ToString();
+            return "Time: " + Time.ToString("htt") + "; Rain: " + Rainfall.ToString() + "; Temperature: " + Temperature.ToString();
         }
     }
 }

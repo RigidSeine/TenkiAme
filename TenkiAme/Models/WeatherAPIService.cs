@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Headers;
 using System.Text;
-//using System.Text.Json;
 using Newtonsoft.Json;
 using TenkiAme.DataTransferObjects;
-using TenkiAme.wwwroot;
+
 
 namespace TenkiAme.Models
 {
@@ -29,7 +27,7 @@ namespace TenkiAme.Models
             variables.Add("precipitation.rate");
 
             //Create the timeseries we want the data over
-            WeatherTimeSeries = new WeatherTimeSeries(DateTime.Now,"3h",47); //TODO Replace hard-coded values with declared constants
+            WeatherTimeSeries = new WeatherTimeSeries(DateTime.Now,"1h",47); //TODO Replace hard-coded values with declared constants
 
             PointPostData pointPostData = new PointPostData(-41.291, 174.777, variables, WeatherTimeSeries);
 
