@@ -27,7 +27,7 @@ namespace TenkiAme.Models
             variables.Add("precipitation.rate");
 
             //Create the timeseries we want the data over
-            WeatherTimeSeries = new WeatherTimeSeries(DateTime.Now,"1h",47); //TODO Replace hard-coded values with declared constants
+            WeatherTimeSeries = new WeatherTimeSeries(TimeZoneInfo.ConvertTimeToUtc(DateTime.Now),"1h",47); //TODO Replace hard-coded values with declared constants
 
             PointPostData pointPostData = new PointPostData(-41.291, 174.777, variables, WeatherTimeSeries);
 

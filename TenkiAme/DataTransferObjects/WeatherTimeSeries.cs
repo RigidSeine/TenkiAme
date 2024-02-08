@@ -21,13 +21,20 @@ namespace TenkiAme.DataTransferObjects
             this.Repeat = repeat;
         }
 
-        public List<DateTime> GetTimeSeriesAsList()
+        public List<DateTime> GetTimeSeriesAsList(bool isInUTC = true)
         {
             List<DateTime> list = new List<DateTime>();
 
+            //Take out the 'h' and convert to integer
             int interval = Int32.Parse(this.Interval.Replace("h", ""));
-            DateTime from = this.From; //Copy
 
+            //Copy the From property
+            DateTime from = this.From; 
+
+            //Covert to entries to local time the argument passed in is true
+            from = isInUTC ? TimeZoneInfo.ConvertTimeFromUtc(from, TimeZoneInfo.Local) : from;
+
+            //Build timeseries
             for (int i = 0; i < this.Repeat+1; i++)
             {
                 list.Add(from);
