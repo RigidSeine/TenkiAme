@@ -29,8 +29,9 @@
         public string PrintToPage()
         {
             var str = "Date: " + CalendarDate.Date.ToString("dd MMM") + 
-                       "Temperature High: " + GetMaxTemperature() + 
-                       "; Temperature Low: " + GetMinTemperature();
+                       "; Temperature High: " + GetMaxTemperature() +
+                       "°C; Temperature Low: " + GetMinTemperature() +
+                       "°C";
 
             return str;
 

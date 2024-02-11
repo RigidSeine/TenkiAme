@@ -71,7 +71,7 @@ namespace TenkiAme.Models
                 //Now iterate over the group of hours (day) and fill in the WeatherDay
                 for (int i = 0; i < day.Count(); i++)
                 {
-                    var weatherHour = new WeatherHourData(day.ElementAt(i), rainByDay[i], WeatherUtil.KelvinToCelsius(tempByDay[i]));
+                    var weatherHour = new WeatherHourData(day.ElementAt(i), WeatherUtil.RoundPrecipitationRate(rainByDay[i]), WeatherUtil.KelvinToCelsius(tempByDay[i]));
                     weatherDay.WeatherHours.Add(weatherHour);
                 }
 

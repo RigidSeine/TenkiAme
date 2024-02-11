@@ -17,7 +17,7 @@ namespace TenkiAme.DataTransferObjects
 
         public string PrintToPage()
         {
-            return "Time: " + Time.ToString("htt") + "; Rain: " + Rainfall.ToString() + "; Temperature: " + Temperature.ToString();
+            return "Time: " + Time.ToString("htt") + "; Rain: " + Rainfall.ToString() + "mm; Temperature: " + Temperature.ToString() + "°C";
         }
     }
 }

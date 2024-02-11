@@ -4,14 +4,21 @@
 @model TenkiAme.Models.WeatherModel
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Home View Index</h2>
-
-<p>Home View Hello.</p>
-<p>@foreach (var hour in Model.WeatherHours)
+@* <p>@foreach (var i in Model.WeatherVariables["air.temperature.at-2m"].Data)
     {
-        <p>@hour.PrintToPage();</p>
+        <p>@(i.Value-273.15).ToString()</p>
+    }
+</p> *@
+<p style="white-space:break-spaces;">
+    @foreach (var day in Model.WeatherDays)
+    {
+        <p>@day.PrintToPage()
+        @foreach (var hour in day.WeatherHours)
+        {
+               <p>@hour.PrintToPage()</p>
+        }
+        </p>
     }
 </p>
