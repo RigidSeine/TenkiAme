@@ -2,16 +2,18 @@
 {
     public static class WeatherUtil
     {
-        public static double? KelvinToCelsius(double? kelvin)
+        public static double KelvinToCelsius(double? kelvin)
         {
             if (kelvin < 0) { return KelvinToCelsius(0); }
             if (kelvin == null ) { return 0; }
-            return kelvin - 273.15;
+            return (double) Math.Round((decimal) (kelvin - 273.15), 1);
         }
 
-        //Count days, order list, loop through and compare DateTime.day
-        //Use days to create list of lists of hours
-        //Use list of lists to create list of tuples or object (Datetime, tempHigh, tempLow)
+        public static double RoundPrecipitationRate(double? precipitationRate) 
+        { 
+            if(precipitationRate == null) { return 0.0; }
+            return (double) Math.Abs(Math.Round((decimal)precipitationRate, 1));
+        }
 
     }
 }

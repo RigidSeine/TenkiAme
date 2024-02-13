@@ -101,6 +101,28 @@ Alternatively, (or even concurrently) you can use ```app.MapControllers()``` in 
                 var rainByDay = rainData.Where((value, index) => weatherTimeSeries[index].Date == day.Key).ToList();
 
                 //Do the same for temperature
-                var tempByDay = temperatureData.Where((value, index) => )
+                var tempByDay = temperatureData.Where((value, index) => weatherTimeSeries[index].Date == day.Key).ToList();
             }
+```
+
+#Media Queries in CSS 
+- Allow for the application of different styles depending on the characteristic of a user's device e.g. screen size, resolution, orientation, etc.
+- E.g. If the current media is at least 768px in width, then set the font size for the html tag to be 16px, set main tag to have property of flex-wrap: nowrap and div tags to have property of flex-basis: 33%. If the width is less than 768px then the font size in the html tag will be 14px.
+```CSS
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+    main {
+        flex-wrap: nowrap;
+    }
+
+    div {
+        flex-basis: 33%;
+    }
+}
 ```
