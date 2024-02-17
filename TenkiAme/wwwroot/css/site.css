@@ -2,17 +2,30 @@ html {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+
     main {
         flex-wrap: nowrap;
     }
 
-    div {
-        flex-basis: 33%;
+    .Container-inner {
+        max-width: 64rem;
     }
+}
+
+.container-inner {
+    position: relative;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.container-content {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -25,11 +38,11 @@ html {
 }
 
 main {
-    background: #d9d7d5;
-    display: flex;
-    flex-wrap: wrap;
+    --display: flex;
+    --flex-wrap: wrap;
     justify-content: space-between;
 }
+
 
 
 body {
@@ -70,6 +83,36 @@ a.navbar-brand {
     -webkit-text-stroke-width: 0.1rem;
     -webkit-text-stroke-color: black;
     text-shadow: 2px 4px 2px rgba(0, 0, 0, 1);
+}
+
+.flex-grow{
+    flex-grow: 1;
+}
+
+.flex-row{
+   flex-direction: row;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .md-half-wid {
+    width: 50%;
+  }
+}
+
+.wid-full{
+    width: 100%;
+}
+
+.min-w-18r{
+    min-width: 18rem;
+}
+
+.gap-1r{
+    gap: 1rem;
 }
 
 .vl{
