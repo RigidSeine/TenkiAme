@@ -105,6 +105,11 @@ Alternatively, (or even concurrently) you can use ```app.MapControllers()``` in 
             }
 ```
 
+#Using an external CSS sheet in Views [TODO]
+- To e Linking
+- Caching
+- <link rel="stylesheet" href="~/css/site.css?v=@DateTime.Now.Ticks"/> 
+
 #Media Queries in CSS 
 - Allow for the application of different styles depending on the characteristic of a user's device e.g. screen size, resolution, orientation, etc.
 - E.g. If the current media is at least 768px in width, then set the font size for the html tag to be 16px, set main tag to have property of flex-wrap: nowrap and div tags to have property of flex-basis: 33%. If the width is less than 768px then the font size in the html tag will be 14px.
@@ -126,3 +131,4 @@ html {
     }
 }
 ```
+

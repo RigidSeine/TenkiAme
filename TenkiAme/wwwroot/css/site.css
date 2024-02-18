@@ -85,6 +85,11 @@ a.navbar-brand {
     text-shadow: 2px 4px 2px rgba(0, 0, 0, 1);
 }
 
+.vl {
+    border-left: 6px solid red;
+    height: auto;
+}
+
 .flex-grow{
     flex-grow: 1;
 }
@@ -111,13 +116,32 @@ a.navbar-brand {
     min-width: 18rem;
 }
 
-.gap-1r{
-    gap: 1rem;
+.border-line {
+    border-width: 1px; 
 }
 
-.vl{
-    border-left: 6px solid red;
-    height:auto;
+.rounded-border-xl{
+    border-radius: 1rem;
+}
+
+.border-shadow {
+    box-shadow:0 0 0 0.25rem #258cfb;
+}
+
+.relative-posn {
+    position: relative;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.gap-1r{
+    gap: 1rem;
 }
 
 .bg-white {

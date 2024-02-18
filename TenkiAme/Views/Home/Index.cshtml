@@ -6,30 +6,23 @@
     ViewData["Title"] = "TenkiAme ";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-@* <p>@foreach (var i in Model.WeatherVariables["air.temperature.at-2m"].Data)
-    {
-        <p>@(i.Value-273.15).ToString()</p>
+
+@* <style>
+    .container-content {
+        display: flex;
+        flex-direction: column;
+        flex: auto;
     }
-</p> *@
-<style>
-    div {
-        background: #767775;
-        flex-basis: 100%;
-        height: 100px;
-        margin-bottom: 0.5rem;
-    }
-</style>
-<p style="white-space:break-spaces;">
-    @foreach (var day in Model.WeatherDays)
-    {
-        <div>
-            <p>
-                @day.PrintToPage()
-                @foreach (var hour in day.WeatherHours)
-                {
-                    <p>@hour.PrintToPage()</p>
-                }
-            </p>
-        </div>
-    }
-</p>
+</style> *@
+
+@foreach (var day in Model.WeatherDays)
+{
+    //create div using the container-inner class
+    <div class="container-content container-inner .col-1">
+        @day.PrintToPage()
+        @foreach (var hour in day.WeatherHours)
+        {
+            <p>@hour.PrintToPage()</p>
+        }
+    </div>
+}

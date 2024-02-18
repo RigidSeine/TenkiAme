@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TenkiAme</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css"/>
-
+    <link rel="stylesheet" href="~/css/site.css?v=@DateTime.Now.Ticks"/> 
+    @*?v=@DateTime.Now.Ticks is form of cache-busting to fetch CSS file from the server instead of the 
+    browser cache. This is useful when you update the CSS file and want to see the changes immediately. 
+    This is FOR DEV ONLY.*@
 </head>
 <body>
     <header>
