@@ -26,6 +26,11 @@
             return WeatherHours.Min(weatherHour => weatherHour.Temperature);
         }
 
+        public string GetFormattedCalendarDate()
+        {
+            return CalendarDate.Date.ToString("dd MMM");
+        }
+
         public string PrintToPage()
         {
             var str = "Date: " + CalendarDate.Date.ToString("dd MMM") + 

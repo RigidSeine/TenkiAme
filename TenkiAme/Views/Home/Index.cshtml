@@ -7,22 +7,27 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-@* <style>
-    .container-content {
-        display: flex;
-        flex-direction: column;
-        flex: auto;
-    }
-</style> *@
-
 @foreach (var day in Model.WeatherDays)
 {
     //create div using the container-inner class
-    <div class="container-content container-inner .col-1">
-        @day.PrintToPage()
-        @foreach (var hour in day.WeatherHours)
-        {
-            <p>@hour.PrintToPage()</p>
-        }
+    <div class="flex flex-col gap-4 md:flex-row">
+        <div class="flex wid-full min-w-18r flex-col gap-4 md-half-wid">
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>@day.GetFormattedCalendarDate()</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>Min:@day.GetMinTemperature()</span>
+                        <span>Max:@day.GetMaxTemperature()</span>
+                    </div>
+                </div>
+                <span>@day.PrintToPage()</span>
+                @foreach (var hour in day.WeatherHours)
+                {
+                    <span>@hour.PrintToPage()</span>
+                }
+            </div>
+        </div>
     </div>
 }
