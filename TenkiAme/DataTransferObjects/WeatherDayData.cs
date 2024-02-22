@@ -1,4 +1,6 @@
-﻿namespace TenkiAme.DataTransferObjects
+﻿using Microsoft.Data.SqlClient;
+
+namespace TenkiAme.DataTransferObjects
 {
     public class WeatherDayData
     {
@@ -10,6 +12,13 @@
         {
             this.CalendarDate = date;
             WeatherHours = new List<WeatherHourData>();
+        }
+
+        public double? GetCurrentTemperature()
+        {
+            if (WeatherHours == null) { return null; }
+
+            return WeatherHours.Find(weatherHour => weatherHour.Time.Hour == DateTime.Now.Hour).Temperature;
         }
 
         public double? GetMaxTemperature()

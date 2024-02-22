@@ -89,6 +89,22 @@ a.navbar-brand {
     text-shadow: 2px 4px 2px rgba(0, 0, 0, 1);
 }
 
+@media (min-width: 768px){
+    .align-start {
+        align-items: flex-start !important;
+    }
+}
+
+@media (min-width: 768px){
+    .grid{
+        display: grid;
+    }
+
+    .grid-cols-3{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 .vl {
     border-left: 6px solid red;
     height: auto;
