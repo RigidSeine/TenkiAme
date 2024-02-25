@@ -17,29 +17,21 @@ namespace TenkiAme.Controllers
             return View(model);
         }
 
-        ////GET: /Home/
-        //[Route("Home")]
-        //[Route("Home/Index")]
-        //public string Index()
+        ////GET: /Home/Welcome
+        //[Route("Home/Welcome")]
+        //public IActionResult Welcome(string name, int numTimes = 1)
         //{
-        //    return "This is my default action.";
+        //    if (name == null)
+        //    {
+        //        name = "";
+        //    }
+
+        //    string encodedName = HtmlEncoder.Default.Encode(name);
+
+        //    ViewData["Message"] = "Hello " + encodedName;
+        //    ViewData["NumTimes"] = numTimes;
+
+        //    return View();
         //}
-
-        //GET: /Home/Welcome
-        [Route("Home/Welcome")]
-        public IActionResult Welcome(string name, int numTimes = 1)
-        {
-            if (name == null)
-            {
-                name = "";
-            }
-
-            string encodedName = HtmlEncoder.Default.Encode(name);
-
-            ViewData["Message"] = "Hello " + encodedName;
-            ViewData["NumTimes"] = numTimes;
-
-            return View();
-        }
     }
 }

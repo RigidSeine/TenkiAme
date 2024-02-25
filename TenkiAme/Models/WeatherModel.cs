@@ -1,6 +1,7 @@
 ﻿using TenkiAme.DataTransferObjects;
 using TenkiAme.UtilityObjects;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace TenkiAme.Models
 {
@@ -22,24 +23,31 @@ namespace TenkiAme.Models
         {
             try
             {
-                await Task.WhenAll(GetVariables());
-
-
+                await Task.WhenAll(GetVariablesAsync());
             }
             catch (Exception ex)
             {
                 DevUtil.PrintD("Exception during InitializeAsync - Calling GetVariables(): " + ex.Message);
             }
 
-            await Task.Run(CreateDailyTimeSeries);
+            try
+            { 
+                await Task.Run(CreateDailyTimeSeries);
+            } 
+            catch (Exception ex) 
+            {
+                DevUtil.PrintD("Exception during InitializeAsync - Calling CreateDailyTimeSeries(): " + ex.Message);
+            }
+
         }
 
         //Get weather data from the MetOcean API
-        private async Task GetVariables()
+        private async Task GetVariablesAsync()
         {
             _weatherAPIService = new WeatherAPIService();
-            var weatherResponse = await _weatherAPIService.GetPointTimeSeries();
+            var weatherResponse = await _weatherAPIService.GetPointTimeSeriesAsync();
             WeatherVariables = weatherResponse.Variables;
+            //PrintNoDataReasons(WeatherVariables);
         }
 
         //Breakdown the API Response data and recombine it into a form suitable for use in a webpage.
@@ -79,6 +87,26 @@ namespace TenkiAme.Models
                 WeatherDays.Add(weatherDay);
             }
 
+        }
+
+        private void PrintNoDataReasons(Dictionary<string, VariableDetails> weatherVariables)
+        {
+            foreach(var weatherVariable in weatherVariables)
+            {
+                if (weatherVariable.Value.Data == null)
+                {
+                    DevUtil.PrintD("No data for " + weatherVariable.Key);
+                }
+                else
+                {
+                    DevUtil.PrintD("Data for " + weatherVariable.Key + ": " );
+                    foreach (var data in weatherVariable.Value.NoData)
+                    {
+                        DevUtil.PrintD(data.ToString());
+                    }
+                }
+
+            }
         }
     }
 }

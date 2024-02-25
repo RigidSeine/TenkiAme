@@ -141,3 +141,22 @@
         </div>
     </div>
 </div>
+@foreach (var day in Model.WeatherDays)
+{
+    <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+        <div>
+            <div class="flex justify-between items-center p-4">
+                <span>@day.GetFormattedCalendarDate()</span>
+            </div>
+            <div class="flex justify-between items-center p-4">
+                <span>Min:@day.GetMinTemperature()</span>
+                <span>Max:@day.GetMaxTemperature()</span>
+            </div>
+        </div>
+        <span>@day.PrintToPage()</span>
+                     @foreach (var hour in day.WeatherHours)
+        {
+        <span>@hour.PrintToPage()</span>
+        }
+    </div>
+}
