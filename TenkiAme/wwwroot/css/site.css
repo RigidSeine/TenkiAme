@@ -194,14 +194,35 @@ a.navbar-brand {
     border-bottom: 1px solid #e5e5e5;
 }
 
+.margin-right{
+    margin-right: 1rem;
+}
+
+.margin-left{
+    margin-left: 1rem;
+}
+
 .box-shadow {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.font-6em{
+    font-size: 6em;
+}
+
+.font-3em{
+    font-size: 3em;
+}
+
+font-bold{
+    font-weight: bold;
 }
 
 button.accept-policy {
     font-size: 1rem;
     line-height: inherit;
 }
+
 
 .footer {
     position: absolute;

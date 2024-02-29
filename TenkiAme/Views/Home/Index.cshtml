@@ -6,142 +6,144 @@
     ViewData["Title"] = "TenkiAme ";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-<div class="flex flex-col gap-4 md:flex-row">
-    <div class="flex wid-full min-w-18r flex-col gap-4 md-half-wid">
-        <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-            <div>
-                <div class="flex justify-between items-center p-4 gap-1r">
-                    <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
-                    <span>Current Temperature: @Model.WeatherDays[0].GetCurrentTemperature()</span>
+<div class="flex flex-col gap-4 md:flex-row flex-grow wid-full">
+    <div class="flex flex-row wid-full">
+        <div class="flex wid-full min-w-18r flex-col gap-4 md-half-wid">
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4 gap-1r">
+                        <div class="flex justify-between">@DateTime.Now.DayOfWeek @Model.WeatherDays[0].GetFormattedCalendarDate()</div>
+                        <div class="flex justify-between font-6em font-bold">Current Temperature: @Model.WeatherDays[0].GetCurrentTemperature()</div>
+                    </div>
+                    <div class="flex justify-between items-center p-4 gap-1r">
+                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
+                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center p-4 gap-1r">
-                    <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                    <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                </div>
+                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                @*@foreach (var hour in day.WeatherHours)
+                {
+                    <span>@hour.PrintToPage()</span>
+                } *@
             </div>
-            <span>@Model.WeatherDays[0].PrintToPage()</span>
-@*                 @foreach (var hour in day.WeatherHours)
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
+                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    </div>
+                </div>
+                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                @*                 @foreach (var hour in day.WeatherHours)
             {
+            <span>@hour.PrintToPage()</span>
+            } *@
+            </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
+                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    </div>
+                </div>
+                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                @*                 @foreach (var hour in day.WeatherHours)
+                {
                 <span>@hour.PrintToPage()</span>
-            } *@
-        </div>
-        <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-            <div>
-                <div class="flex justify-between items-center p-4">
-                    <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
-                </div>
-                <div class="flex justify-between items-center p-4">
-                    <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                    <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                </div>
+                } *@
             </div>
-            <span>@Model.WeatherDays[0].PrintToPage()</span>
-            @*                 @foreach (var hour in day.WeatherHours)
-        {
-        <span>@hour.PrintToPage()</span>
-        } *@
-        </div>
-    </div>
-    <div class="grid grid-cols-3 gap-4">
-        <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-            <div>
-                <div class="flex justify-between items-center p-4">
-                    <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
+                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center p-4">
-                    <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                    <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                </div>
+                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                @*                 @foreach (var hour in day.WeatherHours)
+                {
+                <span>@hour.PrintToPage()</span>
+                } *@
             </div>
-            <span>@Model.WeatherDays[0].PrintToPage()</span>
-            @*                 @foreach (var hour in day.WeatherHours)
-            {
-            <span>@hour.PrintToPage()</span>
-            } *@
-        </div>
-        <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-            <div>
-                <div class="flex justify-between items-center p-4">
-                    <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
+                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center p-4">
-                    <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                    <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                </div>
+                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                @*                 @foreach (var hour in day.WeatherHours)
+                {
+                <span>@hour.PrintToPage()</span>
+                } *@
             </div>
-            <span>@Model.WeatherDays[0].PrintToPage()</span>
-            @*                 @foreach (var hour in day.WeatherHours)
-            {
-            <span>@hour.PrintToPage()</span>
-            } *@
-        </div>
-        <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-            <div>
-                <div class="flex justify-between items-center p-4">
-                    <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
+                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center p-4">
-                    <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                    <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                </div>
+                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                @*                 @foreach (var hour in day.WeatherHours)
+                {
+                <span>@hour.PrintToPage()</span>
+                } *@
             </div>
-            <span>@Model.WeatherDays[0].PrintToPage()</span>
-            @*                 @foreach (var hour in day.WeatherHours)
-            {
-            <span>@hour.PrintToPage()</span>
-            } *@
-        </div>
-        <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-            <div>
-                <div class="flex justify-between items-center p-4">
-                    <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
+                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center p-4">
-                    <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                    <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                </div>
+                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                @*                 @foreach (var hour in day.WeatherHours)
+                {
+                <span>@hour.PrintToPage()</span>
+                } *@
             </div>
-            <span>@Model.WeatherDays[0].PrintToPage()</span>
-            @*                 @foreach (var hour in day.WeatherHours)
-            {
-            <span>@hour.PrintToPage()</span>
-            } *@
-        </div>
-        <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-            <div>
-                <div class="flex justify-between items-center p-4">
-                    <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4">
+                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
+                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center p-4">
-                    <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                    <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                </div>
+                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                @*                 @foreach (var hour in day.WeatherHours)
+                {
+                <span>@hour.PrintToPage()</span>
+                } *@
             </div>
-            <span>@Model.WeatherDays[0].PrintToPage()</span>
-            @*                 @foreach (var hour in day.WeatherHours)
-            {
-            <span>@hour.PrintToPage()</span>
-            } *@
-        </div>
-        <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-            <div>
-                <div class="flex justify-between items-center p-4">
-                    <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
-                </div>
-                <div class="flex justify-between items-center p-4">
-                    <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                    <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                </div>
-            </div>
-            <span>@Model.WeatherDays[0].PrintToPage()</span>
-            @*                 @foreach (var hour in day.WeatherHours)
-            {
-            <span>@hour.PrintToPage()</span>
-            } *@
         </div>
     </div>
 </div>
-@foreach (var day in Model.WeatherDays)
+@* @foreach (var day in Model.WeatherDays)
 {
     <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
         <div>
@@ -159,4 +161,4 @@
         <span>@hour.PrintToPage()</span>
         }
     </div>
-}
+} *@
