@@ -10,17 +10,26 @@
     <div class="flex flex-row wid-full">
         <div class="flex wid-full min-w-18r flex-col gap-4 md-half-wid">
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-                <div>
-                    <div class="flex justify-between items-center p-4 gap-1r">
-                        <div class="flex justify-between">@DateTime.Now.DayOfWeek @Model.WeatherDays[0].GetFormattedCalendarDate()</div>
-                        <div class="flex justify-between font-6em font-bold">Current Temperature: @Model.WeatherDays[0].GetCurrentTemperature()</div>
-                    </div>
-                    <div class="flex justify-between items-center p-4 gap-1r">
-                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                    </div>
+                <div class="flex justify-between font-bold p-4 gap-1r font-medium">
+                    <div class="flex justify-between">@DateTime.Now.DayOfWeek @Model.WeatherDays[0].GetFormattedCalendarDate()</div>
+                    <div class="flex justify-between">Wellington</div>
                 </div>
-                <span>@Model.WeatherDays[0].PrintToPage()</span>
+                <div class="flex justify-centre p-4 gap-1r">
+                    <div class="flex font-xlarge font-bold font-weight-700">@Model.WeatherDays[0].GetCurrentTemperature()°C</div>
+                </div>
+                <div class="flex justify-between p-4 gap-1r">
+@*                     <span>High: @Model.WeatherDays[0].GetMaxTemperature()°C</span>
+                    <span>Low: @Model.WeatherDays[0].GetMinTemperature()°C</span> *@
+                    <ul class="list-style-none font-bold font-medium padding-left-none">
+                        <li>
+                            <span>High: @Model.WeatherDays[0].GetMaxTemperature()°C</span>
+                        </li>
+                        <li>
+                            <span>Low: @Model.WeatherDays[0].GetMinTemperature()°C</span>
+                        </li>
+                    </ul>
+                </div>
+                @* <span>@Model.WeatherDays[0].PrintToPage()</span> *@
                 @*@foreach (var hour in day.WeatherHours)
                 {
                     <span>@hour.PrintToPage()</span>
@@ -28,10 +37,10 @@
             </div>
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
                     </div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
                         <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
                     </div>
@@ -46,10 +55,10 @@
         <div class="grid grid-cols-3 gap-4">
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
                     </div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
                         <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
                     </div>
@@ -62,10 +71,10 @@
             </div>
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
                     </div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
                         <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
                     </div>
@@ -78,10 +87,10 @@
             </div>
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
                     </div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
                         <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
                     </div>
@@ -94,10 +103,10 @@
             </div>
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
                     </div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
                         <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
                     </div>
@@ -110,10 +119,10 @@
             </div>
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
                     </div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
                         <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
                     </div>
@@ -126,10 +135,10 @@
             </div>
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
                     </div>
-                    <div class="flex justify-between items-center p-4">
+                    <div class="flex justify-between  p-4">
                         <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
                         <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
                     </div>
@@ -147,10 +156,10 @@
 {
     <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
         <div>
-            <div class="flex justify-between items-center p-4">
+            <div class="flex justify-between  p-4">
                 <span>@day.GetFormattedCalendarDate()</span>
             </div>
-            <div class="flex justify-between items-center p-4">
+            <div class="flex justify-between  p-4">
                 <span>Min:@day.GetMinTemperature()</span>
                 <span>Max:@day.GetMaxTemperature()</span>
             </div>
