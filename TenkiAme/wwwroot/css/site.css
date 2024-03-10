@@ -42,8 +42,8 @@ html {
 }
 
 main {
-    --display: flex;
-    --flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -164,6 +164,10 @@ a.navbar-brand {
     justify-content: center;
 }
 
+.align-vertical-centre{
+    align-items: center;
+}
+
 .overflow-hidden {
     overflow: hidden;
 }
@@ -214,6 +218,14 @@ a.navbar-brand {
     padding-left: 0;
 }
 
+.padding-left{
+    padding-left: 1rem;
+}
+
+.padding-right{
+    padding-right: 1rem;
+}
+
 .box-shadow {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
@@ -239,9 +251,14 @@ a.navbar-brand {
     font-weight: bold;
 }
 
+.font-weight-300 {
+    font-weight: 300;
+}
+
 .font-weight-700{
     font-weight: 700;
 }
+
 
 .list-style-none{
     list-style: none;

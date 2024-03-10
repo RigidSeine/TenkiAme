@@ -65,7 +65,13 @@
                     <span>High: @Model.WeatherDays[i].GetMaxTemperature()</span>
                     </div>
                 </div>
-                <span>@Model.WeatherDays[i].PrintToPage()</span>
+                <div class="flex justify-centre p-4 gap-1r">
+                        <div class="flex font-med font-bold font-weight-700 justify-centre align-vertical-centre"><img src="/images/Sun-Transparent.png" style="height: 100%; width:100%; "class=" " /></div>
+                </div>
+                <div>
+                    <div>SUNRISE: XXXXX</div>
+                    <div>SUNSET: XXXXX</div>
+                </div>
             </div>
         }   @*
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
