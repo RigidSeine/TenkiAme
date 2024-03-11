@@ -40,6 +40,18 @@ namespace TenkiAme.DataTransferObjects
             return CalendarDate.Date.ToString("dd MMM");
         }
 
+        public string GetWeatherImage()
+        {
+            if (WeatherHours.Any(weatherHour => weatherHour.Rainfall >= 1.0))
+            {
+                return "/images/Umbrella-Transparent.png";
+            }
+            else
+            {
+                return "/images/Sun-Transparent.png";
+            }
+        }
+
         public string PrintToPage()
         {
             var str = "Date: " + CalendarDate.Date.ToString("dd MMM") + 

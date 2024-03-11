@@ -49,7 +49,7 @@ namespace TenkiAme.Models
             WeatherVariables = weatherResponse.Variables;
             //PrintNoDataReasons(WeatherVariables);
         }
-
+ 
         //Breakdown the API Response data and recombine it into a form suitable for use in a webpage.
         private void CreateDailyTimeSeries ()
         {

@@ -18,7 +18,6 @@ namespace TenkiAme.Models
         public WeatherAPIService()
         {
             HttpClient = new HttpClient();
-            HttpClient.DefaultRequestHeaders.Add("x-api-key", "WUcPrDqoG9SLAbx5QQcWGM");
         }
 
         public async Task<PointPostData> BuildPointPostDataAsync()
@@ -41,22 +40,29 @@ namespace TenkiAme.Models
         [HttpPost]
         public async Task<PointResponseData> GetPointTimeSeriesAsync()
         {
+            //Set the API key - needs to be stored in a vault
+            HttpClient.DefaultRequestHeaders.Add("x-api-key", "WUcPrDqoG9SLAbx5QQcWGM");
+
+            //Build the request data
             PointPostData pointPostData = await BuildPointPostDataAsync();
 
+            //Set the JSON settings of the request
             var jsonSettings = new JsonSerializerSettings 
             { 
                 DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffZ", 
                 NullValueHandling = NullValueHandling.Ignore
             };
 
+            //Convert the request data to JSON
             var jsonData = JsonConvert.SerializeObject(pointPostData, jsonSettings);
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
+
+            //Send the request to the API
             using (var response = await HttpClient.PostAsync(new Uri("https://forecast-v2.metoceanapi.com/point/time"), content))
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    //var result = response.Content.ReadAsStringAsync().Result;
                     var result = await response.Content.ReadAsStringAsync();
 
                     PointResponseData pointResponseData = JsonConvert.DeserializeObject<PointResponseData>(result);
@@ -69,6 +75,41 @@ namespace TenkiAme.Models
                 }
             }
 
+        }
+
+        //TODO: Call this method from the controller
+        [HttpGet]
+        public async Task<SunriseSunsetResponse> GetSunriseSunset(string location)
+        {
+            SunriseSunsetResponse sunriseSunsetResponse = new SunriseSunsetResponse();
+            //Set the API key to nothing
+            HttpClient.DefaultRequestHeaders.Add("x-api-key", "");
+
+            //Get the coordinates of Wellington
+            var locCoords = WeatherLocation.GetLocationCoordinates(location);
+
+            //Set the JSON settings of the request
+            var jsonSettings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            //Send the request to the API
+            using (var response = await HttpClient.GetAsync(new Uri("https://api.sunrisesunset.io/json?lat=" + locCoords.Lat + "&lng=" + locCoords.Lon)))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    sunriseSunsetResponse = JsonConvert.DeserializeObject<SunriseSunsetResponse>(result);
+
+                    return sunriseSunsetResponse;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString() + " " + response.Content.ToString() + " " + response.RequestMessage.ToString());
+                }
+            }
         }
     }
 
