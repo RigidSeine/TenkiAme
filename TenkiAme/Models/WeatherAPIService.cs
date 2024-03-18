@@ -3,6 +3,7 @@ using System.Text;
 using Newtonsoft.Json;
 using TenkiAme.DataTransferObjects;
 using TenkiAme.Data;
+using TenkiAme.UtilityObjects;
 
 
 namespace TenkiAme.Models
@@ -77,9 +78,8 @@ namespace TenkiAme.Models
 
         }
 
-        //TODO: Call this method from the controller
         [HttpGet]
-        public async Task<SunriseSunsetResponse> GetSunriseSunset(string location)
+        public async Task<SunriseSunsetResponse> GetSunriseSunset(string location = "Wellington")
         {
             SunriseSunsetResponse sunriseSunsetResponse = new SunriseSunsetResponse();
             //Set the API key to nothing
@@ -94,14 +94,22 @@ namespace TenkiAme.Models
                 NullValueHandling = NullValueHandling.Ignore
             };
 
-            //Send the request to the API
-            using (var response = await HttpClient.GetAsync(new Uri("https://api.sunrisesunset.io/json?lat=" + locCoords.Lat + "&lng=" + locCoords.Lon)))
+            //Send the request to the API using the provided location and today and tomorrow
+            using (var response = await HttpClient.GetAsync(new Uri("https://api.sunrisesunset.io/json?lat=" + locCoords.Lat 
+                                                                    + "&lng=" + locCoords.Lon 
+                                                                    + "&date_start=" + DateTime.Today.ToString("yyyy-MM-dd") 
+                                                                    + "&date_end=" + DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")
+                                                                    )
+                                                            )
+            )
             {
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
 
                     sunriseSunsetResponse = JsonConvert.DeserializeObject<SunriseSunsetResponse>(result);
+
+                    //DevUtil.PrintD(result);
 
                     return sunriseSunsetResponse;
                 }

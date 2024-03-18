@@ -14,6 +14,8 @@ namespace TenkiAme.Models
         
         public List<WeatherDayData> WeatherDays { get; set; }
 
+        public List<SunriseSunsetResponseData> SunriseSunsets { get; set; }
+
 
         public WeatherModel() 
         {
@@ -39,6 +41,14 @@ namespace TenkiAme.Models
                 DevUtil.PrintD("Exception during InitializeAsync - Calling CreateDailyTimeSeries(): " + ex.Message);
             }
 
+            try
+            {
+                await Task.Run(StoreSunriseSet);
+            }
+            catch ( Exception ex)
+            {
+                DevUtil.PrintD("Exception during InitializeAsync - Calling StoreSunriseSet(): " + ex.Message);
+            }
         }
 
         //Get weather data from the MetOcean API
@@ -49,9 +59,9 @@ namespace TenkiAme.Models
             WeatherVariables = weatherResponse.Variables;
             //PrintNoDataReasons(WeatherVariables);
         }
- 
+
         //Breakdown the API Response data and recombine it into a form suitable for use in a webpage.
-        private void CreateDailyTimeSeries ()
+        private void CreateDailyTimeSeries()
         {
             WeatherDays = new List<WeatherDayData>();
 
@@ -61,7 +71,7 @@ namespace TenkiAme.Models
 
             //Group the timeseries by day
             var hoursByDay = weatherTimeSeries.GroupBy(x => x.Date);
-            
+
             //Iterate over each group of hours
             foreach (var day in hoursByDay)
             {
@@ -87,6 +97,12 @@ namespace TenkiAme.Models
                 WeatherDays.Add(weatherDay);
             }
 
+        }
+
+        private async Task StoreSunriseSet()
+        {
+            var sunriseSunsetResponse = await _weatherAPIService.GetSunriseSunset("Wellington");
+            SunriseSunsets = sunriseSunsetResponse.Results;
         }
 
         private void PrintNoDataReasons(Dictionary<string, VariableDetails> weatherVariables)

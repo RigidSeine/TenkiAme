@@ -69,8 +69,8 @@
                         <div class="flex font-med font-bold font-weight-700 justify-centre align-vertical-centre"><img src="@Model.WeatherDays[i].GetWeatherImage()" style="height: 100%; width:100%; "class=" " /></div>
                 </div>
                 <div>
-                    <div>SUNRISE: XXXXX</div>
-                    <div>SUNSET: XXXXX</div>
+                    <div>SUNRISE: @Model.SunriseSunsets[i].sunrise</div>
+                    <div>SUNSET: @Model.SunriseSunsets[i].sunset</div>
                 </div>
             </div>
         }   @*

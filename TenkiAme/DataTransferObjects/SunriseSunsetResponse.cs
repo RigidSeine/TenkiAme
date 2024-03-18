@@ -2,7 +2,7 @@
 {
     public class SunriseSunsetResponse
     {
-        public SunriseSunsetResponseData Results { get; set; }
+        public List<SunriseSunsetResponseData> Results { get; set; }
         public string Status { get; set; }
     }
 }
