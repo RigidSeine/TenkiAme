@@ -15,5 +15,11 @@
             return (double) Math.Abs(Math.Round((decimal)precipitationRate, 1));
         }
 
+        public static string RoundTwilightTime(string twilightTime)
+        {
+            DateTime twilightTimeDate = DateTime.Parse(twilightTime);
+
+            return twilightTimeDate.ToString("h:mm tt").ToUpperInvariant();
+        }
     }
 }

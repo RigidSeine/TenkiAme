@@ -1,4 +1,5 @@
-﻿@*
+﻿@using TenkiAme.UtilityObjects
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model TenkiAme.Models.WeatherModel
@@ -68,47 +69,24 @@
                 <div class="flex justify-centre p-4 gap-1r">
                         <div class="flex font-med font-bold font-weight-700 justify-centre align-vertical-centre"><img src="@Model.WeatherDays[i].GetWeatherImage()" style="height: 100%; width:100%; "class=" " /></div>
                 </div>
-                <div>
-                    <div>SUNRISE: @Model.SunriseSunsets[i].sunrise</div>
-                    <div>SUNSET: @Model.SunriseSunsets[i].sunset</div>
+                <div class="flex justify-centre">
+                    <div class="flex justify-centre padding-left">SUNRISE: @WeatherUtil.RoundTwilightTime(Model.SunriseSunsets[i].sunrise)</div>
+                    <div class="flex justify-centre">SUNSET: @WeatherUtil.RoundTwilightTime(Model.SunriseSunsets[i].sunset)</div>
                 </div>
             </div>
-        }   @*
-            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-                <div>
-                    <div class="flex justify-between  p-4">
-                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
-                    </div>
-                    <div class="flex justify-between  p-4">
-                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
-                    </div>
-                </div>
-                <span>@Model.WeatherDays[0].PrintToPage()</span>
-                @*                 @foreach (var hour in day.WeatherHours)
-                {
-                <span>@hour.PrintToPage()</span>
-                } *@
-            @*</div>*@
+            }   
         </div>
     </div>
 </div>
-@* @foreach (var day in Model.WeatherDays)
-{
-    <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
-        <div>
-            <div class="flex justify-between  p-4">
-                <span>@day.GetFormattedCalendarDate()</span>
-            </div>
-            <div class="flex justify-between  p-4">
-                <span>Min:@day.GetMinTemperature()</span>
-                <span>Max:@day.GetMaxTemperature()</span>
-            </div>
-        </div>
-        <span>@day.PrintToPage()</span>
-                     @foreach (var hour in day.WeatherHours)
+<div>
+    @for(int i = 0; i < 2; i++)
+    {
+        foreach(var weatherHour in Model.WeatherDays[i].WeatherHours)
         {
-        <span>@hour.PrintToPage()</span>
+            <div>
+                @weatherHour.PrintToPage();
+            </div>
         }
-    </div>
-} *@
+
+    }
+</div>
