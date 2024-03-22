@@ -79,14 +79,44 @@
     </div>
 </div>
 <div>
+    <strong>TIME</strong>
+</div>
+<div>
     @for(int i = 0; i < 2; i++)
     {
         foreach(var weatherHour in Model.WeatherDays[i].WeatherHours)
         {
-            <div>
-                @weatherHour.PrintToPage();
+            <div class="wid-full">
+                @weatherHour.Time.ToString("h tt")
             </div>
         }
-
+    }
+</div>
+<div>
+    <strong>RAINFALL</strong>
+</div>
+<div>
+    @for (int i = 0; i < 2; i++)
+    {
+        foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
+        {
+            <div class="wid-full">
+                @weatherHour.Rainfall.ToString() mm
+            </div>
+        }
+    }
+</div>
+<div>
+    <strong>TEMPERATURE</strong>
+</div>
+<div>
+    @for (int i = 0; i < 2; i++)
+    {
+        foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
+        {
+            <div class="wid-full">
+                @weatherHour.Temperature.ToString() °C
+            </div>
+        }
     }
 </div>
