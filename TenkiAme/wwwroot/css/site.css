@@ -172,6 +172,14 @@ a.navbar-brand {
     overflow: hidden;
 }
 
+.overflow-scroll {
+    overflow: scroll;
+}
+
+.overflow-auto{
+    overflow: auto;
+}
+
 .gap-1r{
     gap: 1rem;
 }
@@ -259,6 +267,10 @@ a.navbar-brand {
     font-weight: 700;
 }
 
+.no-wrap{
+    white-space: nowrap;
+}
+
 
 .list-style-none{
     list-style: none;
@@ -276,4 +288,38 @@ button.accept-policy {
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
+}
+
+.grid-item-a {
+    grid-area: header;
+}
+
+.grid-item-b {
+    grid-area: main;
+}
+
+.grid-item-c {
+    grid-area: sidebar;
+}
+
+.grid-item-d {
+    grid-area: footer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "header header header header"
+        "main main . sidebar"
+        "footer footer footer footer";
+}
+
+.block{
+    display: block;
+}
+
+.width-test{
+    width:inherit;
 }
