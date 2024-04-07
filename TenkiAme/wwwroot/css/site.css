@@ -45,6 +45,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    max-width: 1260px;
 }
 
 
@@ -124,6 +125,12 @@ a.navbar-brand {
 
 .flex-col{
     flex-direction: column;
+}
+
+@media (min-width: 1400px){
+    .md-full-wid{
+        max-width: 1320px;
+    }
 }
 
 @media (min-width: 768px) {
