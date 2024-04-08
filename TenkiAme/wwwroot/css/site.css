@@ -171,6 +171,10 @@ a.navbar-brand {
     justify-content: center;
 }
 
+.text-centre{
+    text-align: center;
+}
+
 .align-vertical-centre{
     align-items: center;
 }
@@ -327,6 +331,10 @@ button.accept-policy {
     display: block;
 }
 
-.width-test{
-    width:inherit;
+.inline-block{
+    display: inline-block;
+}
+
+.width-hour{
+    width:50px;
 }

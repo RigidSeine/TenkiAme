@@ -19,8 +19,6 @@
                     <div class="flex font-xlarge font-bold font-weight-700">@Model.WeatherDays[0].GetCurrentTemperature()°C</div>
                 </div>
                 <div class="flex justify-between p-4 gap-1r">
-@*                     <span>High: @Model.WeatherDays[0].GetMaxTemperature()°C</span>
-                    <span>Low: @Model.WeatherDays[0].GetMinTemperature()°C</span> *@
                     <ul class="list-style-none font-bold font-medium padding-left-none">
                         <li>
                             <span>High: @Model.WeatherDays[0].GetMaxTemperature()°C</span>
@@ -30,11 +28,6 @@
                         </li>
                     </ul>
                 </div>
-                @* <span>@Model.WeatherDays[0].PrintToPage()</span> *@
-                @*@foreach (var hour in day.WeatherHours)
-                {
-                    <span>@hour.PrintToPage()</span>
-                } *@
             </div>
             <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
@@ -46,11 +39,7 @@
                         <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
                     </div>
                 </div>
-                <span>@Model.WeatherDays[0].PrintToPage()</span>
-                @*                 @foreach (var hour in day.WeatherHours)
-            {
-            <span>@hour.PrintToPage()</span>
-            } *@
+                <span>@Model.WeatherDays[0].PrintToPage() UV INFO HERE</span>
             </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
@@ -78,18 +67,18 @@
         </div>
     </div>
 </div>
-<div class="block margin-left width-test overflow-auto">
+<div class="block margin-left overflow-auto">
     <div class="block">
         <div class="flex">
             <strong>TIME</strong>
         </div>
-        <div class="flex">
+        <div class="inline-block no-wrap">
             @for (int i = 0; i < 2; i++)
             {
                 foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
                 {
-                    <div class=" block margin-right no-wrap wid-full">
-                        @weatherHour.Time.ToString("h tt")
+                    <div class=" inline-block no-wrap width-hour text-center">
+                        @weatherHour.Time.ToString("htt")
                     </div>
                 }
             }
@@ -97,14 +86,14 @@
     </div>
     <div class="block">
         <div class="flex">
-            <strong>RAINFALL (mm)</strong>
+            <strong>RAINFALL (mm/h)</strong>
         </div>
-        <div class="flex">
+        <div class="inline-block no-wrap">
             @for (int i = 0; i < 2; i++)
             {
                 foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
                 {
-                    <div class="block margin-left margin-right wid-full">
+                    <div class="inline-block width-hour text-center">
                         @weatherHour.Rainfall.ToString()
                     </div>
                 }
@@ -115,74 +104,16 @@
         <div class="flex">
             <strong>TEMPERATURE (°C)</strong>
         </div>
-        <div class="flex">
+        <div class="inline-block no-wrap">
             @for (int i = 0; i < 2; i++)
             {
                 foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
                 {
-                    <div class="block margin-left margin-right wid-full">
+                    <div class="inline-block width-hour text-center">
                         @weatherHour.Temperature.ToString()
                     </div>
                 }
             }
         </div>
     </div>
-</div>
-<div class="block margin-left width-test overflow-auto">
-    <table>
-        <thead>
-            <tr>
-                <td>TIME</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @for (int i = 0; i < 2; i++)
-                {
-                    foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
-                    {
-                        <td class="block margin-right wid-full">
-                            @weatherHour.Temperature.ToString()
-                        </td>
-                    }
-                }
-            </tr>
-        </tbody>
-        <thead>
-            <tr>
-                <td>TIME</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @for (int i = 0; i < 2; i++)
-                {
-                    foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
-                    {
-                        <td class="block margin-right wid-full">
-                            @weatherHour.Temperature.ToString()
-                        </td>
-                    }
-                }
-            </tr>
-        </tbody>
-        <thead>
-            <tr>
-                <td>TIME</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @for (int i = 0; i < 2; i++)
-                {
-                    foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
-                    {
-                        <td class="block margin-right wid-full">
-                            @weatherHour.Temperature.ToString()
-                        </td>
-                    }
-                }
-            </tr>
-        </tbody>
-    </table>
 </div>
