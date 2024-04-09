@@ -1,8 +1,8 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
-div{
+div {
     display: flex;
 }
 
@@ -33,12 +33,12 @@ div{
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 main {
@@ -90,21 +90,21 @@ a.navbar-brand {
     text-shadow: 2px 4px 2px rgba(0, 0, 0, 1);
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
     .align-start {
         align-items: flex-start !important;
     }
 }
 
-@media (min-width: 768px){
-    .grid{
+@media (min-width: 768px) {
+    .grid {
         display: grid;
     }
 
-    .grid-cols-3{
+    .grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-    
+
     .grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -115,48 +115,48 @@ a.navbar-brand {
     height: auto;
 }
 
-.flex-grow{
+.flex-grow {
     flex-grow: 1;
 }
 
-.flex-row{
-   flex-direction: row;
+.flex-row {
+    flex-direction: row;
 }
 
-.flex-col{
+.flex-col {
     flex-direction: column;
 }
 
-@media (min-width: 1400px){
-    .md-full-wid{
+@media (min-width: 1400px) {
+    .md-full-wid {
         max-width: 1320px;
     }
 }
 
 @media (min-width: 768px) {
-  .md-half-wid {
-    width: 50%;
-  }
+    .md-half-wid {
+        width: 50%;
+    }
 }
 
-.wid-full{
+.wid-full {
     width: 100%;
 }
 
-.min-w-18r{
+.min-w-18r {
     min-width: 18rem;
 }
 
 .border-line {
-    border-width: 1px; 
+    border-width: 1px;
 }
 
-.rounded-border-xl{
+.rounded-border-xl {
     border-radius: 1rem;
 }
 
 .border-shadow {
-    box-shadow:0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.25rem #258cfb;
 }
 
 .relative-posn {
@@ -167,15 +167,15 @@ a.navbar-brand {
     justify-content: space-between;
 }
 
-.justify-centre{
+.justify-centre {
     justify-content: center;
 }
 
-.text-centre{
+.text-centre {
     text-align: center;
 }
 
-.align-vertical-centre{
+.align-vertical-centre {
     align-items: center;
 }
 
@@ -187,11 +187,11 @@ a.navbar-brand {
     overflow: scroll;
 }
 
-.overflow-auto{
+.overflow-auto {
     overflow: auto;
 }
 
-.gap-1r{
+.gap-1r {
     gap: 1rem;
 }
 
@@ -225,23 +225,23 @@ a.navbar-brand {
     border-bottom: 1px solid #e5e5e5;
 }
 
-.margin-right{
+.margin-right {
     margin-right: 1rem;
 }
 
-.margin-left{
+.margin-left {
     margin-left: 1rem;
 }
 
-.padding-left-none{
+.padding-left-none {
     padding-left: 0;
 }
 
-.padding-left{
+.padding-left {
     padding-left: 1rem;
 }
 
-.padding-right{
+.padding-right {
     padding-right: 1rem;
 }
 
@@ -249,11 +249,11 @@ a.navbar-brand {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-.font-small{
+.font-small {
     font-size: 0.875rem;
 }
 
-.font-medium{
+.font-medium {
     font-size: 1.25;
 }
 
@@ -266,7 +266,7 @@ a.navbar-brand {
 }
 
 
-.font-bold{
+.font-bold {
     font-weight: bold;
 }
 
@@ -274,16 +274,16 @@ a.navbar-brand {
     font-weight: 300;
 }
 
-.font-weight-700{
+.font-weight-700 {
     font-weight: 700;
 }
 
-.no-wrap{
+.no-wrap {
     white-space: nowrap;
 }
 
 
-.list-style-none{
+.list-style-none {
     list-style: none;
 }
 
@@ -327,14 +327,86 @@ button.accept-policy {
         "footer footer footer footer";
 }
 
-.block{
+.block {
     display: block;
 }
 
-.inline-block{
+.inline-block {
     display: inline-block;
 }
 
-.width-hour{
-    width:50px;
+.width-hour {
+    width: 50px;
 }
+
+.vl-red {
+    height: 99px;
+    width: 8px;
+    position: absolute;
+    right: 29%;
+    top: 0;
+    background-color: #fe0902;
+}
+
+.vl-white {
+    height: 99px;
+    width: 8px;
+    position: absolute;
+    right: 30%;
+    top: 0;
+    background-color: #eff7ff;
+}
+
+.vl-blue {
+    height: 99px;
+    width: 8px;
+    position: absolute;
+    right: 31%;
+    top: 0;
+    background-color: #0380fa;
+}
+
+.vl-green {
+    height: 99px;
+    width: 8px;
+    position: absolute;
+    right: 32%;
+    top: 0;
+    background-color: #63ec00;
+}
+
+.vl-orange {
+    height: 99px;
+    width: 8px;
+    position: absolute;
+    right: 33%;
+    top: 0;
+    background-color: #eba200;
+}
+
+.vl-turquoise {
+    height: 99px;
+    width: 8px;
+    position: absolute;
+    right: 34%;
+    top: 0;
+    background-color: #4afffc;
+}
+
+.vl-gold {
+    height: 99px;
+    width: 8px;
+    position: absolute;
+    right: 35%;
+    top: 0;
+    background-color: #ffce12;
+}
+
+
+#fe0902 /*Red*/
+#eff7ff /*White*/
+#0380fa /*Blue*/
+#63ec00 /*Green*/
+#eba200 /*Orange*/
+#4afffc /*Turquoise*/
+#ffce12 /*Gold*/

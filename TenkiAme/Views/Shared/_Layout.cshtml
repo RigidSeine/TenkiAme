@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TenkiAme</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css?v=@DateTime.Now.Ticks"/> 
-    @*?v=@DateTime.Now.Ticks is form of cache-busting to fetch CSS file from the server instead of the 
-    browser cache. This is useful when you update the CSS file and want to see the changes immediately. 
+    <link rel="stylesheet" href="~/css/site.css?v=@DateTime.Now.Ticks" />
+    @*?v=@DateTime.Now.Ticks is form of cache-busting to fetch CSS file from the server instead of the
+    browser cache. This is useful when you update the CSS file and want to see the changes immediately.
     This is FOR DEV ONLY.*@
 </head>
 <body>
@@ -17,6 +17,13 @@
             <div class="contain-inner container-content container align-start">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TenkiAme</a>
             </div>
+            <div class="vl-red"></div>
+            <div class="vl-white"></div>
+            <div class="vl-blue"></div>
+            <div class="vl-green"></div>
+            <div class="vl-orange"></div>
+            <div class="vl-turquoise"></div>
+            <div class="vl-gold"></div>
         </nav>
     </header>
     <div class="container">
