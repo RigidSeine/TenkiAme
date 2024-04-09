@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Globalization;
 
 namespace TenkiAme.Pages
 {
@@ -14,7 +15,12 @@ namespace TenkiAme.Pages
 
         public void OnGet()
         {
+            string dateTime = DateTime.Now.ToString("d", new CultureInfo("en-NZ"));
+            ViewData["TimeStamp"] = dateTime;
         }
     }
 
 }
+
+
+
