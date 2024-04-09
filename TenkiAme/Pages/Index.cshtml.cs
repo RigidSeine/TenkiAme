@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TenkiAme.Models;
 
 namespace TenkiAme.Pages
 {
@@ -13,10 +12,9 @@ namespace TenkiAme.Pages
             _logger = logger;
         }
 
-        public async void OnGet()
+        public void OnGet()
         {
-            var weatherApiService = new WeatherAPIService();
-            await weatherApiService.GetPointTimeSeriesAsync();
+
         }
     }
 }

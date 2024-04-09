@@ -132,5 +132,3 @@ html {
 }
 ```
 
-
----_--------------->>>>>>>>>> see mangadex for inspo
