@@ -6,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 //builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<TenkiAmeContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("TenkiAmeContext") ?? throw new InvalidOperationException("Connection string 'TenkiAmeContext' not found.")));
+//builder.Services.AddDbContext<TenkiAmeContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("TenkiAmeContext") ?? throw new InvalidOperationException("Connection string 'TenkiAmeContext' not found.")));
 
 var app = builder.Build();
 

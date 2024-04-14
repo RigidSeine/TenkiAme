@@ -109,6 +109,8 @@ Alternatively, (or even concurrently) you can use ```app.MapControllers()``` in 
 - To e Linking
 - Caching
 - <link rel="stylesheet" href="~/css/site.css?v=@DateTime.Now.Ticks"/> 
+- ?v=@DateTime.Now.Ticks is form of cache-busting to fetch CSS file from the server instead of the browser cache. This is useful when you update the CSS file and want to see the changes immediately. This is FOR DEV ONLY.
+
 
 #Media Queries in CSS 
 - Allow for the application of different styles depending on the characteristic of a user's device e.g. screen size, resolution, orientation, etc.
@@ -131,4 +133,13 @@ html {
     }
 }
 ```
+
+#Images
+- Similar to a snapshot, an image contains all the data on a disk at a specific moment in time in a serialised format. E.g. For backups.
+- Images will also contain 
+- Snapshots
+
+#Dockerfiles
+- VS can create a Dockerfile for you if you created the app in VS itself.
+- The file contains a script on how to build a Docker image 
 
