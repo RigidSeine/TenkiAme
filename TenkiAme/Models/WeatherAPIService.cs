@@ -11,7 +11,8 @@ namespace TenkiAme.Models
     public class WeatherAPIService
     {
         private const int NumOfDataPoints = 214; //214 is the number of data points for 9 days. The API only returns data for 9.5 days
-        
+        //private readonly IDictionary<string, string> _secrets;
+
         public  HttpClient HttpClient { get; private set; }
 
         public WeatherTimeSeries WeatherTimeSeries { get; private set; }
@@ -43,6 +44,11 @@ namespace TenkiAme.Models
         {
             //Set the API key - needs to be stored in a vault
             HttpClient.DefaultRequestHeaders.Add("x-api-key", "WUcPrDqoG9SLAbx5QQcWGM");
+
+            //var metOceanApiKey = _secrets["MetOcean-Key"];
+
+           // HttpClient.DefaultRequestHeaders.Add("x-api-key", metOceanApiKey);
+
 
             //Build the request data
             PointPostData pointPostData = await BuildPointPostDataAsync();

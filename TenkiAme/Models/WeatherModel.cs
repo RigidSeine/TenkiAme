@@ -19,6 +19,7 @@ namespace TenkiAme.Models
 
         public WeatherModel() 
         {
+            _weatherAPIService = new WeatherAPIService();
         }
 
         public async Task InitializeAsync()
@@ -54,7 +55,6 @@ namespace TenkiAme.Models
         //Get weather data from the MetOcean API
         private async Task GetVariablesAsync()
         {
-            _weatherAPIService = new WeatherAPIService();
             var weatherResponse = await _weatherAPIService.GetPointTimeSeriesAsync();
             WeatherVariables = weatherResponse.Variables;
             //PrintNoDataReasons(WeatherVariables);

@@ -143,3 +143,5 @@ html {
 - VS can create a Dockerfile for you if you created the app in VS itself.
 - The file contains a script on how to build a Docker image 
 
+#Azure Key Vault
+- In order to create a secret, the user must have the `Key Vault Administrator` usergroup for the vault's Resource Group. Even if they're the owner of the subscription.
