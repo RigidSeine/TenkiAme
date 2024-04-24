@@ -145,3 +145,136 @@ html {
 
 #Azure Key Vault
 - In order to create a secret, the user must have the `Key Vault Administrator` usergroup for the vault's Resource Group. Even if they're the owner of the subscription.
+
+#Unix Commands
+- chmod changes the permissions of a file. 
+- ```chmod 400  [foldername]``` set's the file's permissions so that only the file owner has read permission, and everyone else has no permissions.
+- ```chmod 666 [foldername]``` means that all users can read and write but cannot execute the file/folder.
+- ```chmod 777 [foldername]``` will give read, write, and execute permissions for everyone. 
+- ```chown [new_owner] [foldername]``` sets the owner of the [foldername] to the [new_owner]
+- ```systemctl enable [application].service``` enables a Linux service defined with a .service file. - See https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units
+- ```systemctl start [application].service``` starts the Linux service. The .service on the end is optional.
+- ```ls -l``` lets you not only list the files in the current directory but also their owners and group-owners
+```
+~$ ls -l
+drwxr-xr-x  2 owner group 4096 Aug 12 19:12 Desktop
+...
+```
+
+#Nginx Commands
+- https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/
+
+#Using an SSH private key
+- In order to use an SSH private key, the permissions on the file must be set to read-only for the current user.
+- This can be achieved on Linux using the chmod 400 command or by changing the security settings in file explorer on the key itself by setting the owner to be the user currently logged in. https://amitpatriwala.wordpress.com/2023/08/17/windows-ssh-permissions-for-private-key-are-too-open/. There is also a non-GUI version for this in Github.
+
+#Set up Docker in a VM
+- Create VM
+- Get SSH keys for VM
+- SSH log in to VM
+ 
+ #Deploy to web options - ranked easiest to hardest
+ - Azure App Service
+ - Azure Container Instances/Apps (if dockerising)
+ - IIS
+ ## General web server (e.g. Kestrel + Nginx, Apache, etc.) on another server (VM, physical machine)
+ - First part from https://www.youtube.com/watch?v=cpkX9mScZEU
+ - Deploy VM with SSH port open
+ - SSH log in to VM
+ - Run ```sudo apt-get update``` to update apt-get. Apt-get is the Advanced Package Tool for Linux.
+ - Run ```sudo apt-get install dotnet-sdk-8.0``` to install .NET 8.0's SDK. This version number changes depend on what .NET version your app is developed in.
+   - If you run ```sudo apt-get install dotnet-runtime-8.0``` you should get a message saying that it's already installed.
+   - The same should happen if you run ```sudo apt-get install aspnetcore-runtime-8.0```.
+   - A good check is to run ```dotnet --info```
+  - Now do something similar to run nginx: ```sudo apt-get install nginx```
+    - You can check if nginx was installed correctly by visiting the IP address of your VM (just use your local machine's browser). 
+    - You will need to open up port 80 (HTTP) or port 443 (HTTPS) on your VM in order for this to work.
+  - Next run ```sudo nano /etc/nginx/sites-available/default``` to edit the default nginx configration file
+  - Where it says location, replace the contents with the following and save the file.
+  ```location / {
+       proxy_pass http://localhost:5000;
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection keep-alive;
+       proxy_set_header Host $host;
+       proxy_cache_bypass $http_upgrade;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header X-Forwarded-Proto $scheme;
+   }
+   ``` 
+  - Now launch/create the web app and edit the launchSettings.json file and change the "applicationUrl" property value to listen on the port that was exposed in the nginx configuration file proxy settings.
+  - Now switch to the /var/www folder in your VM using ```cd /var/www```
+  - Make the new directory called "app" in it using ```sudo mkdir app```
+  - Set permissions on the folder using ```sudo chmod 666 app```
+  - Change the owner to the current user using ```sudo chowner tenkiame app```
+  - Use SCP to try and a transfer the app's files (the contents of the publish folder - check the destination in the solution's publish profile) into /var/www/app. WinSCP is great for this.
+    - If you are stopped by a lack of permissions, you can use ```sudo chmod 777 app```. Be sure to reset this permission later.
+  - You can check if the app is working by running ```sudo dotnet TenkiAme.dll```
+  - Create a .service file in /etc/systemd/system folder of the VM to configure how Linux should run your app.
+```
+[Unit]
+##Unit Section describes the service. i.e. Metadata
+Description=TenkiAme
+
+[Service]
+##Service Section contains the configuration options
+WorkingDirectory=/var/www/app/
+#Specifies the command to start the service. It runs the `dotnet` command with the specified .DLL file (TenkiAme.dll)
+ExecStart=/usr/bin/dotnet /var/www/app/TenkiAme.dll
+#Specifies that teh service should restarted automatically if it exits unexpectedly
+Restart=always
+# Restart service after 10 seconds if the dotnet service crashes:
+RestartSec=10
+#Specifies the signal to use when stopping the service. `SIGINT` is the interrupt signal
+KillSignal=SIGINT
+#Identifies the service is syslog messages
+SyslogIdentifier=dotnet-TenkiAme
+#Specifies the user under which the service should be run. Set to root by default.
+User=tenkiame
+#Run in production mode
+Environment=ASPNETCORE_ENVIRONMENT=Production
+#Disable telemetry messages for .NET Core
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+##Install Section Specifies whether the service should be enabled or started automatically at boot time.
+#Specifies the target this service should be started under. `multi-user.target` is standard for systems with
+#multiple users.
+WantedBy=multi-user.target
+```
+  - Now enable the service you just created with ```sudo systemctl enable /etc/systemd/system/TenkiAme.service```
+    - You should get a message like ```Created symlink /etc/systemd/system/multi-user.target.wants/TenkiAme.service → /etc/systemd/system/TenkiAme.service.```
+  - Now run the service with ```sudo systemctl start TenkiAme.service```
+  - Now reload nginx using ```sudo nginx -s reload```
+    - If you run into an error saying ```nginx: [error] open() "/run/nginx.pid" failed (2: No such file or directory)``` then it means that the `nginx.pid` is missing from the directory when nginx should have created it automatically.
+    - To force this, you can run ```sudo service nginx restart``` which should create the file
+    - Then you can run ```sudo nginx -s reload -t``` as a test.
+    - And finally run the command again without the `-t` modifier. Then check the website out on your browser using either the IP address or domain name.
+##Problems encountered:
+ - Error 504 Gateway Time-out or Error 500 after final step
+   -  Make sure `proxy_pass http://localhost:5000;` in the `sites-available/default` file align with the port opened in the `launchSettings.json` file.
+
+ #Reverse Proxy
+ - A proxy server that appears to be an ordinary web server, but acutally acts as an intermediary that forwards the client's request to to one or more ordinary web servers. 
+
+ # Misc. Glossary
+ - SCP - Secure Copy Protocol is a means of securely transferring computer files between a local host and a remote host or between two remote hosts.
+
+# Getting the Domain Name
+- Comes before installing certbot
+- Bought from Cloudflare
+- Bound to the IP address (of the VM) on Cloudflare by adding an A record (or two for www) (under DNS > Records)
+
+# Installing Certbot
+- Certbot automatically renews your certificates for you and can even change your nginx conf file, just go to https://certbot.eff.org/ and choose what system and web server software you're using. Instructions for installation will appear afterwards.
+## ERRORS ENCOUNTERED 
+- ERR_SSL_VERSION_OR_CIPHER_MISMATCH - this later morphed into TOO_MANY_REDIRECTS upon revisiting the problem after a few hours.
+- https://certbot.eff.org/pages/help contains links for debugging the connection issue.
+- TOO_MANY_REDIRECTS was caused by a SSL/TLS setting on Cloudflare's side since the domain was bought from Cloudflare - this was suggested by https://letsdebug.net/ and https://community.cloudflare.com/t/website-in-redirect-loop-after-enabling-cloudflare-ssl/452212/2. The recommended (required) setting is that SSL option is set to 'Full SSL (strict)'.
+  - Funnily enough, pausing/stopping Cloudflare allows for a visit to the site with HTTPS.
+
+ #NEXT STEPS
+ 1. Install certbot
+ 1. Get domain name
+ 1. Create env to store api keys and change the dependencies
+ 1. Push to prod

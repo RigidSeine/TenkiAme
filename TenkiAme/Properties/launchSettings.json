@@ -4,25 +4,31 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "VaultUri": "https://tenkiame-secrets.vault.azure.net/",
+        "AZURE_USERNAME": "rickyhhleong@gmail.com"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5228"
+      "applicationUrl": "http://localhost:5000"
     },
     "https": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "VaultUri": "https://tenkiame-secrets.vault.azure.net/",
+        "AZURE_USERNAME": "rickyhhleong@gmail.com"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7279;http://localhost:5228"
+      "applicationUrl": "https://localhost:7279;http://localhost:5000"
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "VaultUri": "https://tenkiame-secrets.vault.azure.net/",
+        "AZURE_USERNAME": "rickyhhleong@gmail.com"
       }
     },
     "Docker": {
@@ -31,7 +37,9 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_HTTPS_PORTS": "8081",
-        "ASPNETCORE_HTTP_PORTS": "8080"
+        "ASPNETCORE_HTTP_PORTS": "8080",
+        "VaultUri": "https://tenkiame-secrets.vault.azure.net/",
+        "AZURE_USERNAME": "rickyhhleong@gmail.com"
       },
       "publishAllPorts": true,
       "useSSL": true
