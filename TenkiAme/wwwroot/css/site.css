@@ -225,6 +225,10 @@ a.navbar-brand {
     border-bottom: 1px solid #e5e5e5;
 }
 
+.margin-top{
+    margin-top: 1rem;
+}
+
 .margin-right {
     margin-right: 1rem;
 }
