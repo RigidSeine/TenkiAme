@@ -206,7 +206,7 @@ drwxr-xr-x  2 owner group 4096 Aug 12 19:12 Desktop
   - Now switch to the /var/www folder in your VM using ```cd /var/www```
   - Make the new directory called "app" in it using ```sudo mkdir app```
   - Set permissions on the folder using ```sudo chmod 666 app```
-  - Change the owner to the current user using ```sudo chowner tenkiame app```
+  - Change the owner to the current user using ```sudo chown tenkiame app```
   - Use SCP to try and a transfer the app's files (the contents of the publish folder - check the destination in the solution's publish profile) into /var/www/app. WinSCP is great for this.
     - If you are stopped by a lack of permissions, you can use ```sudo chmod 777 app```. Be sure to reset this permission later.
   - You can check if the app is working by running ```sudo dotnet TenkiAme.dll```
@@ -267,14 +267,26 @@ WantedBy=multi-user.target
 
 # Installing Certbot
 - Certbot automatically renews your certificates for you and can even change your nginx conf file, just go to https://certbot.eff.org/ and choose what system and web server software you're using. Instructions for installation will appear afterwards.
+
 ## ERRORS ENCOUNTERED 
 - ERR_SSL_VERSION_OR_CIPHER_MISMATCH - this later morphed into TOO_MANY_REDIRECTS upon revisiting the problem after a few hours.
 - https://certbot.eff.org/pages/help contains links for debugging the connection issue.
 - TOO_MANY_REDIRECTS was caused by a SSL/TLS setting on Cloudflare's side since the domain was bought from Cloudflare - this was suggested by https://letsdebug.net/ and https://community.cloudflare.com/t/website-in-redirect-loop-after-enabling-cloudflare-ssl/452212/2. The recommended (required) setting is that SSL option is set to 'Full SSL (strict)'.
   - Funnily enough, pausing/stopping Cloudflare allows for a visit to the site with HTTPS.
+- https://world.siteground.com/kb/err-ssl-version-or-cipher-mismatch/ contains more info about ERR_SSL_VERSION_OR_CIPHER_MISMATCH.
+- ```tenkiame.org is currently unable to handle this request. HTTP ERROR 500``` appeared the next day.
+  - (Relevant) steps taken:
+    - Checked that it's not a Cloudflare issue by temporarily disabling it.
+    - SSH into the VM, 
+    - Checked if there is a syntax issue with the config file using `sudo nginx -t`
+    - Checked the Nginx error log by using `less /var/log/nginx/error.log`.
+      - Got `2024/04/24 22:36:57 [crit] 18470#18470: *4370 SSL_do_handshake() failed (SSL: error:0A00006C:SSL routines::bad key share) while SSL handshaking, client: 175.30.48.153, server: 0.0.0.0:443`
+      - The error resolved itself after half a day OR it was a result of turning off DNSSEC in the Cloudflare DNS settings.
+  - [UPDATE 26-May-2024] - The problem returned. Therefore no correlation with DNSSEC.
+    - Followed the above steps and checked the error log only to find it empty.
+    - Function came back 20-30 minutes after checking.
 
  #NEXT STEPS
- 1. Install certbot
- 1. Get domain name
  1. Create env to store api keys and change the dependencies
- 1. Push to prod
+ 1. Repush to prod
+ 1. Setup pipeline
