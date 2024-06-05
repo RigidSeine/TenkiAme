@@ -110,7 +110,6 @@ Alternatively, (or even concurrently) you can use ```app.MapControllers()``` in 
 - Caching
 - <link rel="stylesheet" href="~/css/site.css?v=@DateTime.Now.Ticks"/> 
 - ?v=@DateTime.Now.Ticks is form of cache-busting to fetch CSS file from the server instead of the browser cache. This is useful when you update the CSS file and want to see the changes immediately. This is FOR DEV ONLY.
-- Alternatively, use Ctrl + Shift + R to do a hard page reload and use the new CSS. 
 
 
 #Media Queries in CSS 

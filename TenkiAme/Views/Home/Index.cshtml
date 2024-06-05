@@ -10,7 +10,7 @@
 <div class="flex flex-col gap-4 md:flex-row flex-grow wid-full">
     <div class="flex flex-row wid-full">
         <div class="flex wid-full min-w-18r flex-col gap-4 md-half-wid">
-            <div class="rounded-xl border rounded-border-xl bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div class="flex justify-between font-bold p-4 gap-1r font-medium">
                     <div class="flex justify-between">@DateTime.Now.DayOfWeek @Model.WeatherDays[0].GetFormattedCalendarDate()</div>
                     <div class="flex justify-between">Wellington</div>
@@ -29,7 +29,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="rounded-xl border rounded-border-xl bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
                     <div class="flex justify-between  p-4">
                         <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
@@ -42,10 +42,10 @@
                 <span>@Model.WeatherDays[0].PrintToPage() UV INFO HERE</span>
             </div>
         </div>
-        <div class="margin-left grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-4">
             @for (int i = 0; i < 2; i++)
             {
-                <div class="rounded-xl border rounded-border-xl bg-card relative flex wid-full flex-col justify-between overflow-hidden">
+            <div class="rounded-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
                     <div class="flex justify-between  p-4">
                     <span>@Model.WeatherDays[i].GetFormattedCalendarDate()</span>
@@ -67,8 +67,8 @@
         </div>
     </div>
 </div>
-<div class="block border rounded-border-xl margin-top overflow-auto">
-    <div class="block margin-left">
+<div class="block margin-left overflow-auto">
+    <div class="block">
         <div class="flex">
             <strong>TIME</strong>
         </div>
@@ -84,7 +84,7 @@
             }
         </div>
     </div>
-    <div class="block margin-left">
+    <div class="block">
         <div class="flex">
             <strong>RAINFALL (mm/h)</strong>
         </div>
@@ -100,7 +100,7 @@
             }
         </div>
     </div>
-    <div class="block margin-left">
+    <div class="block">
         <div class="flex">
             <strong>TEMPERATURE (°C)</strong>
         </div>
