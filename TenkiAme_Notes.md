@@ -285,6 +285,8 @@ WantedBy=multi-user.target
   - [UPDATE 26-May-2024] - The problem returned. Therefore no correlation with DNSSEC.
     - Followed the above steps and checked the error log only to find it empty.
     - Function came back 20-30 minutes after checking.
+  - [UPDATE 03/06/2024] - Current 500 problem was identified to be caused by favicon retrieval. `<link rel="icon" href="~/favicon.ico" type="image/x-icon" />`
+    - The specific problem comes from the `type="image/x-icon"`. Removing this allowed for everything to work. 
 
  #NEXT STEPS
  1. Create env to store api keys and change the dependencies
