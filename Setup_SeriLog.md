@@ -1,14 +1,18 @@
+# Set up SeriLog
+
+# Install packages
+- `Install-Package Serilog.AspNetCore`
+  - This will include following transitive packages.
+```Install-Package Serilog
+    Install-Package Serilog.Settings.Configuration
+    Install-Package Serilog.Sinks.Console
+    Install-Package Serilog.Sinks.File
+```
+
+# Configuration:
+- Open appsettings.json and add the following to make use of the Console and File sinks.
+```json
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "ConnectionStrings": {
-    "TenkiAmeContext": "Server=(localdb)\\mssqllocaldb;Database=TenkiAmeContext-e92d7518-c41e-4c30-bcfe-59d242b7c5d9;Trusted_Connection=True;MultipleActiveResultSets=true"
-  },
   "Serilog": {
     "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
     "MinimumLevel": "Debug",
@@ -33,3 +37,6 @@
     }
   }
 }
+```
+
+# Setting up Program.cs
