@@ -30,7 +30,7 @@ namespace TenkiAme.Models
             }
             catch (Exception ex)
             {
-                DevUtil.PrintD("Exception during InitializeAsync - Calling GetVariables(): " + ex.Message);
+                DevUtil.PrintD("Exception encountered during InitializeAsync - Calling GetVariables(): " + ex.Message);
             }
 
             try
@@ -39,7 +39,7 @@ namespace TenkiAme.Models
             } 
             catch (Exception ex) 
             {
-                DevUtil.PrintD("Exception during InitializeAsync - Calling CreateDailyTimeSeries(): " + ex.Message);
+                DevUtil.PrintD("Exception encountered during InitializeAsync - Calling CreateDailyTimeSeries(): " + ex.Message);
             }
 
             try
@@ -48,7 +48,16 @@ namespace TenkiAme.Models
             }
             catch ( Exception ex)
             {
-                DevUtil.PrintD("Exception during InitializeAsync - Calling StoreSunriseSet(): " + ex.Message);
+                DevUtil.PrintD("Exception encountered during InitializeAsync - Calling StoreSunriseSet(): " + ex.Message);
+            }
+
+            try
+            {
+                await Task.Run(StoreUVData);
+            }
+            catch (Exception ex)
+            {
+                DevUtil.PrintD("Exception encountered InitializeAsync - Calling StoreUVData");
             }
         }
 
@@ -98,11 +107,17 @@ namespace TenkiAme.Models
             }
 
         }
-
+        //Get Twilight info and store it
         private async Task StoreSunriseSet()
         {
             var sunriseSunsetResponse = await _weatherAPIService.GetSunriseSunset("Wellington");
             SunriseSunsets = sunriseSunsetResponse.Results;
+        }
+
+        //Get UV info and store it
+        private async Task StoreUVData()
+        {
+            await _weatherAPIService.GetUVDataFromNiwa("Wellington");
         }
 
         private void PrintNoDataReasons(Dictionary<string, VariableDetails> weatherVariables)

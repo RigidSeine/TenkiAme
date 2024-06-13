@@ -33,6 +33,7 @@ var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
 - After making the call, you can return a response. If the call was successful, then you can read the response JSON as a string and then deserialise using a class that has the properties you want to store in the response JSON.
   - The "container" classes don't need to have all the attributes in the JSON. It can simply have the attributes you want to store.
+- Deserialising from a JSON response into a C# tends to be more friendly with case-sensitivity so `[JsonProperty]` tends to not be required for classes created for deserialisation.
 
 #Razor Pages vs. MVC 
 - To use Razor Pages instead of MVC, include the following:
@@ -293,4 +294,6 @@ WantedBy=multi-user.target
       - A restoration was made to the MVP version which got it working again after a restart to the VM.
       - However, it is broken again after no more changes. This is probably caused by the original problem which seems to be intermittent.
       - Time to implement logging.
+- `curl: (35) schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - The revocation function was unable to check revocation for the certificate.` was encountered trying to run the curl command for the Niwa UV API.
+  - Appending `--ssl-no-revoke` as an additional parameter to the command bypassed this issue. I trust Niwa enough. 
 

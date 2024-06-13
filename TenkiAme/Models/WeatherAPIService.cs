@@ -125,6 +125,45 @@ namespace TenkiAme.Models
                 }
             }
         }
+
+        [HttpGet]
+        public async Task GetUVDataFromNiwa(string location = "Wellington")
+        {
+            //Create an object to deserialise the response data into
+            UVResponseData uVResponseData = new UVResponseData();
+
+            //Empty the API key header
+            HttpClient.DefaultRequestHeaders.Add("x-api-key", "");
+
+            var locCoords = WeatherLocation.GetLocationCoordinates(location);
+
+            var jsonSettings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            var url = new Uri("https://api.niwa.co.nz/uv/data?lat=" + locCoords.Lat + "&long=" + locCoords.Lon + "&apikey=");
+
+            using (var response = await HttpClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    DevUtil.PrintD(result.ToString());
+
+                    //uVResponseData = JsonConvert.DeserializeObject<UVResponseData>(result);
+
+                    //DevUtil print to debug
+                    //uVResponseData.PrintToString();
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString() + " " + response.Content.ToString());
+                }
+            }
+
+        }
     }
 
 
