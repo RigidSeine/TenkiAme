@@ -1,10 +1,10 @@
 ﻿namespace TenkiAme.DataTransferObjects
 {
-    public class UVResponseData
+    public class UVResponse
     {
-        List<UVResponseProduct> products;
+        public List<UVResponseProduct> products { get; set; }
 
-        public UVResponseData() 
+        public UVResponse() 
         {
             this.products = new List<UVResponseProduct>();
         }

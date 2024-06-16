@@ -10,5 +10,11 @@
             this.Time = time;
             this.Value = value;
         }
+
+        public DateTime GetNZTime()
+        {
+            var nzst = TimeZoneInfo.FindSystemTimeZoneById("New Zealand Standard Time");
+            return TimeZoneInfo.ConvertTimeFromUtc(Time, nzst);
+        }
     }
 }

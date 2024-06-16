@@ -286,6 +286,9 @@ a.navbar-brand {
     white-space: nowrap;
 }
 
+.pre-line {
+    white-space: pre-line;
+}
 
 .list-style-none {
     list-style: none;

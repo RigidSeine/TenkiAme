@@ -31,15 +31,16 @@
             </div>
             <div class="rounded-border-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                 <div>
-                    <div class="flex justify-between  p-4">
-                        <span>@Model.WeatherDays[0].GetFormattedCalendarDate()</span>
+                    <div class="flex justify-between align-vertical-centre p-4">
+                        <span><strong>Current UV Level: </strong>@Model.UVs[0].GetCurrentUVLevel()</span>
                     </div>
-                    <div class="flex justify-between  p-4">
-                        <span>Min:@Model.WeatherDays[0].GetMinTemperature()</span>
-                        <span>Max:@Model.WeatherDays[0].GetMaxTemperature()</span>
+                    <div class="flex justify-between align-vertical-centre p-4">
+                        <span><strong>Max UV Level: </strong>@Math.Round(Model.UVs[0].GetMaxUVLevelAndTime().Value) at @Model.UVs[0].GetMaxUVLevelAndTime().GetNZTime().ToString("t")</span>
                     </div>
-                </div>
-                <span>@Model.WeatherDays[0].PrintToPage() UV INFO HERE</span>
+                    <div class="flex justify-between align-vertical-centre p-4">
+                        <span class="pre-line">@Model.UVs[0].GetUVSafetyMessage()</span>
+                    </div>
+                </div> 
             </div>
         </div>
         <div class="margin-left grid grid-cols-2 gap-4">

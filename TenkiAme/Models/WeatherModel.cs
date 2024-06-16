@@ -16,6 +16,8 @@ namespace TenkiAme.Models
 
         public List<SunriseSunsetResponseData> SunriseSunsets { get; set; }
 
+        public List<UVResponseProduct> UVs { get; set; }
+
 
         public WeatherModel() 
         {
@@ -57,7 +59,7 @@ namespace TenkiAme.Models
             }
             catch (Exception ex)
             {
-                DevUtil.PrintD("Exception encountered InitializeAsync - Calling StoreUVData");
+                DevUtil.PrintD("Exception encountered InitializeAsync - Calling StoreUVData(): " + ex.Message);
             }
         }
 
@@ -117,7 +119,9 @@ namespace TenkiAme.Models
         //Get UV info and store it
         private async Task StoreUVData()
         {
-            await _weatherAPIService.GetUVDataFromNiwa("Wellington");
+            
+            var uVresponse = await _weatherAPIService.GetUVDataFromNiwa("Wellington");
+            UVs = uVresponse.products;
         }
 
         private void PrintNoDataReasons(Dictionary<string, VariableDetails> weatherVariables)

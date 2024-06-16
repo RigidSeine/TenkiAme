@@ -127,10 +127,10 @@ namespace TenkiAme.Models
         }
 
         [HttpGet]
-        public async Task GetUVDataFromNiwa(string location = "Wellington")
+        public async Task<UVResponse> GetUVDataFromNiwa(string location = "Wellington")
         {
             //Create an object to deserialise the response data into
-            UVResponseData uVResponseData = new UVResponseData();
+            UVResponse uVResponseData = new UVResponse();
 
             //Empty the API key header
             HttpClient.DefaultRequestHeaders.Add("x-api-key", "");
@@ -152,10 +152,12 @@ namespace TenkiAme.Models
 
                     DevUtil.PrintD(result.ToString());
 
-                    //uVResponseData = JsonConvert.DeserializeObject<UVResponseData>(result);
+                    uVResponseData = JsonConvert.DeserializeObject<UVResponse>(result);
 
                     //DevUtil print to debug
                     //uVResponseData.PrintToString();
+
+                    return uVResponseData;
                 }
                 else
                 {
