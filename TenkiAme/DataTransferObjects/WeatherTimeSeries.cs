@@ -4,7 +4,6 @@ namespace TenkiAme.DataTransferObjects
 {
     public class WeatherTimeSeries
     {
-        //TODO?: Function converting int hours to string intervals
         [JsonProperty("from")]
         public DateTime From {  get; set; }
         
@@ -29,7 +28,7 @@ namespace TenkiAme.DataTransferObjects
             int interval = Int32.Parse(this.Interval.Replace("h", ""));
 
             //Copy the From property
-            DateTime from = this.From; 
+            DateTime from = this.From;
 
             //Covert to entries to local time the argument passed in is true
             from = isInUTC ? TimeZoneInfo.ConvertTimeFromUtc(from, TimeZoneInfo.Local) : from;
