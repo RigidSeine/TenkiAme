@@ -16,21 +16,27 @@ namespace TenkiAme.DataTransferObjects
 
         public double? GetCurrentTemperature()
         {
-            if (WeatherHours == null) { return null; }
+            if (WeatherHours == null) { return double.NaN; }
 
-            return WeatherHours.Find(weatherHour => weatherHour.Time.Hour == DateTime.Now.Hour).Temperature;
+            try
+            {
+                return WeatherHours.Find(weatherHour => weatherHour.Time.Hour == DateTime.Now.Hour).Temperature;
+            }
+            catch 
+            { return double.NaN; }
+       
         }
 
         public double? GetMaxTemperature()
         {
-            if (WeatherHours == null) { return null; }
+            if (WeatherHours == null) { return double.NaN; }
 
             return WeatherHours.Max(weatherHour => weatherHour.Temperature);
         }
 
         public double? GetMinTemperature()
         {
-            if (WeatherHours == null) { return null; }
+            if (WeatherHours == null) { return double.NaN; }
 
             return WeatherHours.Min(weatherHour => weatherHour.Temperature);
         }
