@@ -1,23 +1,23 @@
-#MVC - Model View Controller
+# MVC - Model View Controller
 - Model manages the state of the database and contains the business logic.
 - View contains the user interface and handles all the user behaviour by passing values to the Controller. The view receives data from the Model so that the UI can be updated to reflect the current state of the data. These implemented using View Templates that have the extension .cshtml.
 - The Controller handles all the requests, passes data from the view to the model.
 - Great pattern for maintaining separation of concerns which is great for testing and scalability.
 
-#Passing Data From a Controller to a View
+# Passing Data From a Controller to a View
 - We use a dictionary called ViewData to store values in the controller so that can be referenced in the View Template.
 ```C#
 ViewData["Name"] = "Gerbil";
 ```
 - This can then be referenced in a similar way in the View Template by preceding the reference with an @ (since @ precedes any C# behaviour).
 
-#Using an API key to Make a Call
+# Using an API key to Make a Call
 - Include it as a header in the request. APIs keep changing what they call the header but it usually is some form of "api-key" or "authentication". Just check the documentation.
 ```C#
 httpClient.DefaultRequestHeaders.Add("x-api-key", "11111");
 ```
 
-#Making POST Requests
+# Making POST Requests
 - When putting together the classes that form the JSON input, you must be very deliberate to match the format EXACTLY as the documentation has it. I.e. Check for JSON arrays (C# Lists), check for case-sensitivity AND DEFINITELY CHECK FOR STUPID DATE FORMATS.
 -If case-sensentivity is an issue, you can use a Newtonsoft attribute to modify it to what it should be when it gets converted to JSON. In the example below, the JSON key needs to be in camelCase.
 ```C#
@@ -35,7 +35,7 @@ var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
   - The "container" classes don't need to have all the attributes in the JSON. It can simply have the attributes you want to store.
 - Deserialising from a JSON response into a C# tends to be more friendly with case-sensitivity so `[JsonProperty]` tends to not be required for classes created for deserialisation.
 
-#Razor Pages vs. MVC 
+# Razor Pages vs. MVC 
 - To use Razor Pages instead of MVC, include the following:
 ```C#
 var builder = WebApplication.CreateBuilder(args);
@@ -43,7 +43,7 @@ builder.Services.AddRazorPages();
 var app = builder.Build();
 app.MapRazorPages();
 ```
--Otherwise to use MVC:
+- Otherwise to use MVC:
 ```C#
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -52,7 +52,7 @@ app.MapControllers(); //And or app.MapControllerRoute(name: "default",pattern: {
 ```
 - You can technically use MVC without ```AddControllersWithViews()``` but you miss a lot of fundamental functionality.
 
-#Routing - MVC
+# Routing - MVC
 - Defines how each part of the web app's API can be accessed.
 E.g. Placing
 ```C#
@@ -81,15 +81,15 @@ Alternatively, (or even concurrently) you can use ```app.MapControllers()``` in 
     }
 ```
 
-#Middleware
+# Middleware
 - Forms the HTTP request-processing pipeline and generation of an HTTP response.
 - Routing is part of this (since you need to route an HTTP request to some form of behaviour of the API).
 - A lot of the Middleware methods start with "app.Use(...)"
 
-#Async
+# Async
 - You can use Task.WhenAll(GetVariables()); if you want to perform async calls in sequence.
 
-#LINQ
+# LINQ
 ##Where()
 - Similar to SQL in that foreach element (instead of record) the condition must return true to be selected.
 - Can also use the ```index``` and ```value``` keywords to reference the index and value of the enumerable collection that Where() is being used on.
@@ -106,14 +106,14 @@ Alternatively, (or even concurrently) you can use ```app.MapControllers()``` in 
             }
 ```
 
-#Using an external CSS sheet in Views [TODO]
+# Using an external CSS sheet in Views [TODO]
 - To e Linking
 - Caching
 - <link rel="stylesheet" href="~/css/site.css?v=@DateTime.Now.Ticks"/> 
 - ?v=@DateTime.Now.Ticks is form of cache-busting to fetch CSS file from the server instead of the browser cache. This is useful when you update the CSS file and want to see the changes immediately. This is FOR DEV ONLY.
 
 
-#Media Queries in CSS 
+# Media Queries in CSS 
 - Allow for the application of different styles depending on the characteristic of a user's device e.g. screen size, resolution, orientation, etc.
 - E.g. If the current media is at least 768px in width, then set the font size for the html tag to be 16px, set main tag to have property of flex-wrap: nowrap and div tags to have property of flex-basis: 33%. If the width is less than 768px then the font size in the html tag will be 14px.
 ```CSS
@@ -135,19 +135,19 @@ html {
 }
 ```
 
-#Images
+# Images
 - Similar to a snapshot, an image contains all the data on a disk at a specific moment in time in a serialised format. E.g. For backups.
 - Images will also contain 
 - Snapshots
 
-#Dockerfiles
+# Dockerfiles
 - VS can create a Dockerfile for you if you created the app in VS itself.
 - The file contains a script on how to build a Docker image 
 
-#Azure Key Vault
+# Azure Key Vault
 - In order to create a secret, the user must have the `Key Vault Administrator` usergroup for the vault's Resource Group. Even if they're the owner of the subscription.
 
-#Unix Commands
+# Unix Commands
 - chmod changes the permissions of a file. 
 - ```chmod 400  [foldername]``` set's the file's permissions so that only the file owner has read permission, and everyone else has no permissions.
 - ```chmod 666 [foldername]``` means that all users can read and write but cannot execute the file/folder.
@@ -162,22 +162,23 @@ drwxr-xr-x  2 owner group 4096 Aug 12 19:12 Desktop
 ...
 ```
 
-#Nginx Commands
+# Nginx Commands
 - https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/
 
-#Using an SSH private key
+# Using an SSH private key
 - In order to use an SSH private key, the permissions on the file must be set to read-only for the current user.
 - This can be achieved on Linux using the chmod 400 command or by changing the security settings in file explorer on the key itself by setting the owner to be the user currently logged in. https://amitpatriwala.wordpress.com/2023/08/17/windows-ssh-permissions-for-private-key-are-too-open/. There is also a non-GUI version for this in Github.
 
-#Set up Docker in a VM
+# Set up Docker in a VM
 - Create VM
 - Get SSH keys for VM
 - SSH log in to VM
  
- #Deploy to web options - ranked easiest to hardest
+ # Deploy to web options - ranked easiest to hardest
  - Azure App Service
  - Azure Container Instances/Apps (if dockerising)
  - IIS
+
  ## General web server (e.g. Kestrel + Nginx, Apache, etc.) on another server (VM, physical machine)
  - First part from https://www.youtube.com/watch?v=cpkX9mScZEU
  - Deploy VM with SSH port open
@@ -203,16 +204,23 @@ drwxr-xr-x  2 owner group 4096 Aug 12 19:12 Desktop
        proxy_set_header X-Forwarded-Proto $scheme;
    }
    ``` 
+```
+[RETROSPECTIVE]: The server name should match the domain name, not just '_', and root directory should be the root directory of the app (this will be relevant after you run `sudo mkdir [APP_NAME]` later)
+```
   - Now launch/create the web app and edit the launchSettings.json file and change the "applicationUrl" property value to listen on the port that was exposed in the nginx configuration file proxy settings.
   - Now switch to the /var/www folder in your VM using ```cd /var/www```
   - Make the new directory called "app" in it using ```sudo mkdir app```
+```
+[RETROSPECTIVE]: Don't call the directory "app". Give it a name appropriate to the actual app. You might create other directories here later for other apps.
+```
   - Set permissions on the folder using ```sudo chmod 666 app```
   - Change the owner to the current user using ```sudo chown tenkiame app```
   - Use SCP to try and a transfer the app's files (the contents of the publish folder - check the destination in the solution's publish profile) into /var/www/app. WinSCP is great for this.
     - If you are stopped by a lack of permissions, you can use ```sudo chmod 777 app```. Be sure to reset this permission later.
   - You can check if the app is working by running ```sudo dotnet TenkiAme.dll```
-  - Create a .service file in /etc/systemd/system folder of the VM to configure how Linux should run your app.
-```
+  - Create a `.service` file in `/etc/systemd/system` folder of the VM to configure how Linux should run your app.
+
+```nginx
 [Unit]
 ##Unit Section describes the service. i.e. Metadata
 Description=TenkiAme
@@ -222,7 +230,7 @@ Description=TenkiAme
 WorkingDirectory=/var/www/app/
 #Specifies the command to start the service. It runs the `dotnet` command with the specified .DLL file (TenkiAme.dll)
 ExecStart=/usr/bin/dotnet /var/www/app/TenkiAme.dll
-#Specifies that teh service should restarted automatically if it exits unexpectedly
+#Specifies that the service should restarted automatically if it exits unexpectedly
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
@@ -243,6 +251,7 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 #multiple users.
 WantedBy=multi-user.target
 ```
+
   - Now enable the service you just created with ```sudo systemctl enable /etc/systemd/system/TenkiAme.service```
     - You should get a message like ```Created symlink /etc/systemd/system/multi-user.target.wants/TenkiAme.service → /etc/systemd/system/TenkiAme.service.```
   - Now run the service with ```sudo systemctl start TenkiAme.service```
@@ -251,12 +260,12 @@ WantedBy=multi-user.target
     - To force this, you can run ```sudo service nginx restart``` which should create the file
     - Then you can run ```sudo nginx -s reload -t``` as a test.
     - And finally run the command again without the `-t` modifier. Then check the website out on your browser using either the IP address or domain name.
-##Problems encountered:
+## Problems encountered:
  - Error 504 Gateway Time-out or Error 500 after final step
    -  Make sure `proxy_pass http://localhost:5000;` in the `sites-available/default` file align with the port opened in the `launchSettings.json` file.
 
- #Reverse Proxy
- - A proxy server that appears to be an ordinary web server, but acutally acts as an intermediary that forwards the client's request to to one or more ordinary web servers. 
+ # Reverse Proxy
+ - A proxy server that appears to be an ordinary web server, but actually acts as an intermediary that forwards the client's request to to one or more ordinary web servers. 
 
 
 
