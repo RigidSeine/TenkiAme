@@ -305,4 +305,4 @@ WantedBy=multi-user.target
       - Time to implement logging.
 - `curl: (35) schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - The revocation function was unable to check revocation for the certificate.` was encountered trying to run the curl command for the Niwa UV API.
   - Appending `--ssl-no-revoke` as an additional parameter to the command bypassed this issue. I trust Niwa enough. 
-
+- `ssh: connect to host 20.55.34.183 port 22: Connection timed out` - Check the inbound port rules. Your IP address might have changed.
