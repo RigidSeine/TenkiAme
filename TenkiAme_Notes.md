@@ -281,9 +281,9 @@ WantedBy=multi-user.target
 - Certbot automatically renews your certificates for you and can even change your nginx conf file, just go to https://certbot.eff.org/ and choose what system and web server software you're using. Instructions for installation will appear afterwards.
 
 ## ERRORS ENCOUNTERED + Change log
-- ERR_SSL_VERSION_OR_CIPHER_MISMATCH - this later morphed into TOO_MANY_REDIRECTS upon revisiting the problem after a few hours.
+- **ERR_SSL_VERSION_OR_CIPHER_MISMATCH** - this later morphed into TOO_MANY_REDIRECTS upon revisiting the problem after a few hours.
 - https://certbot.eff.org/pages/help contains links for debugging the connection issue.
-- TOO_MANY_REDIRECTS was caused by a SSL/TLS setting on Cloudflare's side since the domain was bought from Cloudflare - this was suggested by https://letsdebug.net/ and https://community.cloudflare.com/t/website-in-redirect-loop-after-enabling-cloudflare-ssl/452212/2. The recommended (required) setting is that SSL option is set to 'Full SSL (strict)'.
+- **TOO_MANY_REDIRECTS** was caused by a SSL/TLS setting on Cloudflare's side since the domain was bought from Cloudflare - this was suggested by https://letsdebug.net/ and https://community.cloudflare.com/t/website-in-redirect-loop-after-enabling-cloudflare-ssl/452212/2. The recommended (required) setting is that SSL option is set to 'Full SSL (strict)'.
   - Funnily enough, pausing/stopping Cloudflare allows for a visit to the site with HTTPS.
 - https://world.siteground.com/kb/err-ssl-version-or-cipher-mismatch/ contains more info about ERR_SSL_VERSION_OR_CIPHER_MISMATCH.
 - ```tenkiame.org is currently unable to handle this request. HTTP ERROR 500``` appeared the next day.
@@ -306,3 +306,9 @@ WantedBy=multi-user.target
 - `curl: (35) schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - The revocation function was unable to check revocation for the certificate.` was encountered trying to run the curl command for the Niwa UV API.
   - Appending `--ssl-no-revoke` as an additional parameter to the command bypassed this issue. I trust Niwa enough. 
 - `ssh: connect to host 20.55.34.183 port 22: Connection timed out` - Check the inbound port rules. Your IP address might have changed.
+- **The target process exited without raising a CoreCLR started event. Ensure that the target process is configured to use .NET Core. This may be expected if the target process did not run on .NET Core.** - Encountered upon running the app locally after a few months of paused development.
+  - Many guides say to run `dotnet --list-sdks` and `dotnet --list-runtimes` to make sure you're not missing the appropriate runtime and sdk for running and building.
+  - Then to create a new project and see if it works. It didn't this time around.
+  - The solution that did work this time around was to update Visual Studio Installer.
+- **MSB3021 - Unable to copy file source to destination. Access to the path destination is denied.**
+  - Check Avast antivirus settings. Avast might be quarantining/adding protection around files it doesn't need to.

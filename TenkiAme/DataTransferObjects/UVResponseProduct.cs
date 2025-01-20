@@ -101,7 +101,7 @@ namespace TenkiAme.DataTransferObjects
                 return "UV levels are safe today.\nEnjoy whatever sunlight is available.";
             }
 
-            return "You should apply suncreen from " + thresholds[0].Time.ToString("t") + " today.\nUV levels will be safe from " + thresholds[1].Time.ToString("t") + ".";
+            return "You should apply suncreen from " + thresholds[0].GetNZTime().ToString("t") + " today.\nUV levels will be safe from " + thresholds[1].GetNZTime().ToString("t") + ".";
         }
 
         public void PrintToString()
