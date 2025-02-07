@@ -237,6 +237,10 @@ a.navbar-brand {
     margin-left: 1rem;
 }
 
+.margin-bottom{
+    margin-bottom: 1rem;
+}
+
 .padding-left-none {
     padding-left: 0;
 }
@@ -343,7 +347,7 @@ button.accept-policy {
 }
 
 .width-hour {
-    width: 50px;
+    width: 30px;
 }
 
 .vl-red {
@@ -409,11 +413,8 @@ button.accept-policy {
     background-color: #ffce12;
 }
 
-
-#fe0902 /*Red*/
-#eff7ff /*White*/
-#0380fa /*Blue*/
-#63ec00 /*Green*/
-#eba200 /*Orange*/
-#4afffc /*Turquoise*/
-#ffce12 /*Gold*/
+.dark-highlight {
+    background-color: #222222;
+    color: ghostwhite;
+    font-size: x-large;
+}

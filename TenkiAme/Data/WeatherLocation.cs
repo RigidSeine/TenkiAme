@@ -10,7 +10,7 @@ namespace TenkiAme.Data
         {
             Locations = new Dictionary<string, Point>
                 {
-                    {"Wellington", new Point(-41.2865, 174.7762) },
+                    {"Wellington", new Point(-39, 174) },
                     {"Auckland", new Point(-36.8507, 174.7645) }
                     // Add more locations here
                 };

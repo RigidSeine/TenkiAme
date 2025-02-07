@@ -68,7 +68,8 @@
         </div>
     </div>
 </div>
-<div class="block rounded-border-xl border margin-top overflow-auto">
+@*/
+<div id="hourlyForecast" class="block rounded-border-xl border margin-top overflow-auto">
     <div class="block margin-left">
         <div class="flex">
             <strong>TIME</strong>
@@ -76,9 +77,15 @@
         <div class="inline-block no-wrap">
             @for (int i = 0; i < 2; i++)
             {
+                int hourIndex = 0; //For creating an ID for each hour of the forecast
+
                 foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
                 {
-                    <div class=" inline-block no-wrap width-hour text-center">
+                    hourIndex++;
+
+                    string divId = "day" + i + "hour" + hourIndex;
+                    
+                    <div id="@divId" class=" inline-block no-wrap width-hour text-center">
                         @weatherHour.Time.ToString("htt")
                     </div>
                 }
@@ -97,7 +104,10 @@
                     <div class="inline-block width-hour text-center">
                         @weatherHour.Rainfall.ToString()
                     </div>
-                }
+                    @* <div class="inline-block width-hour text-center"> *@
+                    @*     <img src="/images/Raindrops-Transparent.png" style="height: 100%; width:100%;" /> *@
+                    @* </div> *@
+ @*/               }
             }
         </div>
     </div>
@@ -118,3 +128,43 @@
         </div>
     </div>
 </div>
+*@
+<div id="hourlyForecast" class="container block rounded-border-xl border margin-top overflow-auto">
+    <div class="block">
+        <div class="hstack no-wrap">
+            @for (int i = 0; i < 2; i++)
+            {
+                int hourIndex = 0; //For creating an ID for each hour of the forecast
+
+                foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
+                {
+                    hourIndex++;
+
+                    string divId = "day" + i + "hour" + hourIndex;
+                    string timeDivId = divId + "Time";
+                    string rainDivId = divId + "Rain";
+                    string tempDivId = divId + "Temp";
+
+                    <div id="@divId" class="vstack border rounded-border-xl">
+                        <div id="@timeDivId" class="justify-centre width-hour margin-top margin-left margin-right font-bold">
+                            @weatherHour.Time.ToString("htt")
+                        </div>
+                        <div class="justify-centre margin-top margin-left margin-right">
+                            <img src="/images/Raindrops-Transparent.png" class="justify-centre margin-left margin-right" style="height: 100%; width:100%;" />
+                         </div>
+                        <div id="@rainDivId" class="justify-centre margin-top margin-left margin-right">
+                            @weatherHour.Rainfall.ToString()
+                        </div>
+                        <div class="justify-centre margin-top margin-left margin-right">
+                            <img src="/images/Orange-Thermometer-Transparent.png" class="justify-centre margin-left margin-right" style="height: 100%; width:100%;" />
+                        </div>
+                        <div id="@tempDivId" class="justify-centre margin-top margin-left margin-right" style="">
+                            @weatherHour.Temperature.ToString()
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<script src="~/js/IdentifyCurrentHour.js"></script>

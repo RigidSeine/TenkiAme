@@ -135,6 +135,13 @@ html {
 }
 ```
 
+# Getting the Hourly Forecast to Scroll to The Current Hour
+- Wrote IdentifyCurrentHour.js to solve this - this resolved half the problem and was made much easier upon learning that this needed to be done in JS rather than C#.
+  - The key was to make use of the forecast box's scrollwidth and everything fell into place after that.
+- The half of the problem is that current design of the forecast box doesn't really allow for marking the current hour.
+- Therefore drew more inspiration from P4's persona selection and BBC weather for the new design.
+- This meant scrapping the idea of having persisting headers as the user scrolls like in MetService.
+
 # Images
 - Similar to a snapshot, an image contains all the data on a disk at a specific moment in time in a serialised format. E.g. For backups.
 - Images will also contain 
@@ -173,11 +180,16 @@ drwxr-xr-x  2 owner group 4096 Aug 12 19:12 Desktop
 - Create VM
 - Get SSH keys for VM
 - SSH log in to VM
+  [To be continued?]
  
  # Deploy to web options - ranked easiest to hardest
  - Azure App Service
  - Azure Container Instances/Apps (if dockerising)
  - IIS
+
+```
+[RETROSPECTIVE]: I used none of these and just pushed my published binary files onto VM, set up a web server (nginx being the choice of software) and launched the app as a Linux service. 
+```
 
  ## General web server (e.g. Kestrel + Nginx, Apache, etc.) on another server (VM, physical machine)
  - First part from https://www.youtube.com/watch?v=cpkX9mScZEU
@@ -263,6 +275,14 @@ WantedBy=multi-user.target
 ## Problems encountered:
  - Error 504 Gateway Time-out or Error 500 after final step
    -  Make sure `proxy_pass http://localhost:5000;` in the `sites-available/default` file align with the port opened in the `launchSettings.json` file.
+
+# Making Updates to The App
+- Test the changes locally (or in a docker container).
+- Publish the build.
+- Push the build files to the remote server.
+- Run the following command to restart the service `sudo systemctl restart TenkiAme.service`.
+  - If you get an error message like `Unit etc-systemd-system-TenkiAme.service.mount not found`, then try navigating to `/etc/systemd/system/multi-user.target.wants/` first before running the command again.
+- Visit the website to check if the changes were made.
 
  # Reverse Proxy
  - A proxy server that appears to be an ordinary web server, but actually acts as an intermediary that forwards the client's request to to one or more ordinary web servers. 
