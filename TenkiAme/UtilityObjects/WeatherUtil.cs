@@ -19,7 +19,7 @@
         {
             DateTime twilightTimeDate = DateTime.Parse(twilightTime);
 
-            return twilightTimeDate.ToString("h:mm tt").ToUpperInvariant();
+            return twilightTimeDate.ToString("h:mmtt");
         }
     }
 }

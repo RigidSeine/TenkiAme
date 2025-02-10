@@ -59,76 +59,15 @@
                     <div class="flex justify-centre p-4 gap-1r">
                         <div class="flex font-med font-bold font-weight-700 justify-centre align-vertical-centre"><img src="@Model.WeatherDays[i].GetWeatherImage()" style="height: 100%; width:100%; " class=" " /></div>
                     </div>
-                    <div class="flex justify-centre">
-                        <div class="flex justify-centre padding-left">SUNRISE: @WeatherUtil.RoundTwilightTime(Model.SunriseSunsets[i].sunrise)</div>
-                        <div class="flex justify-centre">SUNSET: @WeatherUtil.RoundTwilightTime(Model.SunriseSunsets[i].sunset)</div>
+                    <div class="flex justify-content-evenly">
+                        <div class="flex justify-centre font-weight-525"><img src="/images/sunrise.png" />@WeatherUtil.RoundTwilightTime(Model.SunriseSunsets[i].sunrise)</div>
+                        <div class="flex justify-centre font-weight-525"><img src="/images/sunset.png" /> @WeatherUtil.RoundTwilightTime(Model.SunriseSunsets[i].sunset)</div>
                     </div>
                 </div>
             }
         </div>
     </div>
 </div>
-@*/
-<div id="hourlyForecast" class="block rounded-border-xl border margin-top overflow-auto">
-    <div class="block margin-left">
-        <div class="flex">
-            <strong>TIME</strong>
-        </div>
-        <div class="inline-block no-wrap">
-            @for (int i = 0; i < 2; i++)
-            {
-                int hourIndex = 0; //For creating an ID for each hour of the forecast
-
-                foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
-                {
-                    hourIndex++;
-
-                    string divId = "day" + i + "hour" + hourIndex;
-                    
-                    <div id="@divId" class=" inline-block no-wrap width-hour text-center">
-                        @weatherHour.Time.ToString("htt")
-                    </div>
-                }
-            }
-        </div>
-    </div>
-    <div class="block margin-left">
-        <div class="flex">
-            <strong>RAINFALL (mm/h)</strong>
-        </div>
-        <div class="inline-block no-wrap">
-            @for (int i = 0; i < 2; i++)
-            {
-                foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
-                {
-                    <div class="inline-block width-hour text-center">
-                        @weatherHour.Rainfall.ToString()
-                    </div>
-                    @* <div class="inline-block width-hour text-center"> *@
-                    @*     <img src="/images/Raindrops-Transparent.png" style="height: 100%; width:100%;" /> *@
-                    @* </div> *@
- @*/               }
-            }
-        </div>
-    </div>
-    <div class="block margin-left">
-        <div class="flex">
-            <strong>TEMPERATURE (°C)</strong>
-        </div>
-        <div class="inline-block no-wrap">
-            @for (int i = 0; i < 2; i++)
-            {
-                foreach (var weatherHour in Model.WeatherDays[i].WeatherHours)
-                {
-                    <div class="inline-block width-hour text-center">
-                        @weatherHour.Temperature.ToString()
-                    </div>
-                }
-            }
-        </div>
-    </div>
-</div>
-*@
 <div id="hourlyForecast" class="container block rounded-border-xl border margin-top overflow-auto">
     <div class="block">
         <div class="hstack no-wrap">

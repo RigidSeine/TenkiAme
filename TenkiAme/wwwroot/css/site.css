@@ -171,6 +171,10 @@ a.navbar-brand {
     justify-content: center;
 }
 
+.justify-evenly {
+    justify-content: space-evenly
+}
+
 .text-centre {
     text-align: center;
 }
@@ -280,6 +284,10 @@ a.navbar-brand {
 
 .font-weight-300 {
     font-weight: 300;
+}
+
+.font-weight-525 {
+    font-weight: 525;
 }
 
 .font-weight-700 {
