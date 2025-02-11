@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System;
 
 namespace TenkiAme.DataTransferObjects
 {
@@ -14,31 +15,34 @@ namespace TenkiAme.DataTransferObjects
             WeatherHours = new List<WeatherHourData>();
         }
 
-        public double? GetCurrentTemperature()
+        //Uses a non-nullable double and returns a string to get consistent numeric rounding
+        public string? GetCurrentTemperature()
         {
-            if (WeatherHours == null) { return double.NaN; }
+            if (WeatherHours == null) { return "N/A"; }
 
-            try
-            {
-                return WeatherHours.Find(weatherHour => weatherHour.Time.Hour == DateTime.Now.Hour).Temperature;
-            }
-            catch 
-            { return double.NaN; }
+            double? currentTemp = WeatherHours.Find(weatherHour => weatherHour.Time.Hour == DateTime.Now.Hour).Temperature;
+            
+            return currentTemp.HasValue ? ((double)currentTemp).ToString("F1") : "N/A";
        
         }
 
-        public double? GetMaxTemperature()
+        //Uses a non-nullable double and returns a string to get consistent numeric rounding
+        public string? GetMaxTemperature()
         {
-            if (WeatherHours == null) { return double.NaN; }
+            if (WeatherHours == null) { return "N/A"; }
 
-            return WeatherHours.Max(weatherHour => weatherHour.Temperature);
+            double? maxTemp = WeatherHours.Max(weatherHour => weatherHour.Temperature);
+            return maxTemp.HasValue ? ((double)maxTemp).ToString("F1") : "N/A";
         }
 
-        public double? GetMinTemperature()
+        //Uses a non-nullable double and returns a string to get consistent numeric rounding
+        public string GetMinTemperature()
         {
-            if (WeatherHours == null) { return double.NaN; }
+            if (WeatherHours == null) { return "N/A"; }
 
-            return WeatherHours.Min(weatherHour => weatherHour.Temperature);
+            double? minTemp = WeatherHours.Min(weatherHour => weatherHour.Temperature);
+
+            return minTemp.HasValue ? ((double)minTemp).ToString("F1") : "N/A";
         }
 
         public string GetFormattedCalendarDate()
