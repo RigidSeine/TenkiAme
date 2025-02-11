@@ -15,6 +15,19 @@ namespace TenkiAme.DataTransferObjects
             Temperature = temperature;
         }
 
+        //Return the value formatted to one decimal point if it's not null otherwise return N/A
+        public string GetFormattedRainfall()
+        {
+            return Rainfall.HasValue ? ((double)Rainfall).ToString("F1") : "N/A";
+        }
+
+        //Return the value formatted to one decimal point if it's not null otherwise return N/A
+        public string GetFormattedTemperature()
+        {
+            return Temperature.HasValue ? ((double)Temperature).ToString("F1") : "N/A";
+        }
+
+
         public string PrintToPage()
         {
             return "Time: " + Time.ToString("htt") + "; Rain: " + Rainfall.ToString() + "mm; Temperature: " + Temperature.ToString() + "°C";

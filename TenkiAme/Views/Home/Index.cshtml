@@ -92,13 +92,13 @@
                             <img src="/images/Raindrops-Transparent.png" class="justify-centre margin-left margin-right" style="height: 100%; width:100%;" />
                          </div>
                         <div id="@rainDivId" class="justify-centre margin-top margin-left margin-right">
-                            @weatherHour.Rainfall.ToString()
+                            @weatherHour.GetFormattedRainfall()
                         </div>
                         <div class="justify-centre margin-top margin-left margin-right">
                             <img src="/images/Orange-Thermometer-Transparent.png" class="justify-centre margin-left margin-right" style="height: 100%; width:100%;" />
                         </div>
                         <div id="@tempDivId" class="justify-centre margin-top margin-left margin-right" style="">
-                            @weatherHour.Temperature.ToString()
+                            @weatherHour.GetFormattedTemperature()
                         </div>
                     </div>
                 }
