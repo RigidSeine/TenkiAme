@@ -6,6 +6,13 @@ namespace TenkiAme.Controllers
 {
     public class HomeController : Controller
     {
+        private ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
+
         //GET: /Home/
         [Route("/")]
         [Route("Home")]

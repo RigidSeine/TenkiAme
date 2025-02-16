@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using Newtonsoft.Json;
+using DotNetEnv;
 using TenkiAme.DataTransferObjects;
 using TenkiAme.Data;
 using TenkiAme.UtilityObjects;
@@ -41,8 +42,11 @@ namespace TenkiAme.Models
         [HttpPost]
         public async Task<PointResponseData> GetPointTimeSeriesAsync()
         {
-            //Set the API key - needs to be stored in a vault
-            HttpClient.DefaultRequestHeaders.Add("x-api-key", "WUcPrDqoG9SLAbx5QQcWGM");
+            //Get the API key
+            string APIKey = Environment.GetEnvironmentVariable("Tenkiame_Metservice_API_Key")!;
+
+            //Set the API key
+            HttpClient.DefaultRequestHeaders.Add("x-api-key", APIKey);
 
             //Build the request data
             PointPostData pointPostData = await BuildPointPostDataAsync();
@@ -134,7 +138,10 @@ namespace TenkiAme.Models
                 NullValueHandling = NullValueHandling.Ignore
             };
 
-            var url = new Uri("https://api.niwa.co.nz/uv/data?lat=" + locCoords.Lat + "&long=" + locCoords.Lon + "&apikey=");
+            //Get the API key
+            string APIKey = Environment.GetEnvironmentVariable("Tenkiame_Niwa_API_Key")!;
+
+            var url = new Uri("https://api.niwa.co.nz/uv/data?lat=" + locCoords.Lat + "&long=" + locCoords.Lon + "&apikey=" + APIKey);
 
             using (var response = await HttpClient.GetAsync(url))
             {

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using DotNetEnv;
 using TenkiAme.Data;
 
 internal class Program
@@ -17,6 +18,9 @@ internal class Program
 
         //Set up dependency injection for using secrets
         //TenkiAme.ServiceConfiguration.ConfigureServices(builder.Services);
+
+        //Load .env file
+        Env.Load();
 
         //Get configuration from the appsettings.json file
         var configuration = new ConfigurationBuilder()

@@ -35,6 +35,16 @@ var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
   - The "container" classes don't need to have all the attributes in the JSON. It can simply have the attributes you want to store.
 - Deserialising from a JSON response into a C# tends to be more friendly with case-sensitivity so `[JsonProperty]` tends to not be required for classes created for deserialisation.
 
+# Secrets
+- Since using Azure Key Vault is a no-go due to how complex it was, we're going with `environment variables` for storing our API keys in production, and `User Secrets` in dev.
+- Turns out C# now has a [`DotNetEnv`](https://www.nuget.org/packages/DotNetEnv) package which allows easy load of a `.env` file so going to be using that instead. 
+## Steps Taken (Easy)
+1. Install DotNetEnv package
+2. Create `.env` file and populate it with the necessary keys e.g. `API_KEY=12345`
+3. Use `Env.Load()` during setup (in `Program.cs`) to load the `.env` variables into the Environment.
+4. Retrieve the keys from wherever using `System.Environment.GetEnvironmentVariable("API_KEY")`.
+
+
 # Razor Pages vs. MVC 
 - To use Razor Pages instead of MVC, include the following:
 ```C#
