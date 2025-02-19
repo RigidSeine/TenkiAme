@@ -7,8 +7,6 @@ namespace TenkiAme.Models
 {
     public class WeatherModel
     {
-        private const int NumOfDataPoints = 48;
-
         private WeatherAPIService _weatherAPIService;
         public Dictionary<string, VariableDetails> WeatherVariables { get; set; }
         

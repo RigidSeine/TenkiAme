@@ -16,17 +16,22 @@
                     <div class="flex justify-between">Wellington</div>
                 </div>
                 <div class="flex justify-centre p-4 gap-1r">
-                    <div class="flex font-xlarge font-bold font-weight-700">@Model.WeatherDays[0].GetCurrentTemperature()°C</div>
+                    <div class="flex font-xlarge font-bold font-weight-700">@Model.WeatherDays[0].GetCurrentTemperature()°C </div>
+                    <div><img src="@Model.WeatherDays[0].GetWeatherImage()" style="height: 90%; width:90%;" /></div>
                 </div>
                 <div class="flex justify-between p-4 gap-1r">
                     <ul class="list-style-none font-bold font-medium padding-left-none">
                         <li>
-                            <span>High: @Model.WeatherDays[0].GetMaxTemperature()°C</span>
+                            <span>High: @Model.WeatherDays[3].GetMaxTemperature()°C</span>
                         </li>
                         <li>
-                            <span>Low: @Model.WeatherDays[0].GetMinTemperature()°C</span>
+                            <span>Low :  @Model.WeatherDays[0].GetMinTemperature()°C</span>
                         </li>
                     </ul>
+                    <div class="align-items-end">
+                        <div class="flex justify-centre font-weight-525"><img src="/images/sunrise.png" style="height:100%; width:100%;"/>@WeatherUtil.RoundTwilightTime(Model.SunriseSunsets[0].sunrise)</div>
+                        <div class="flex justify-centre font-weight-525"><img src="/images/sunset.png" style="height:100%; width:100%;"/> @WeatherUtil.RoundTwilightTime(Model.SunriseSunsets[0].sunset)</div>
+                    </div>
                 </div>
             </div>
             <div class="rounded-border-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
@@ -44,7 +49,7 @@
             </div>
         </div>
         <div class="flex flex-grow-2 margin-left gap-4">
-            @for (int i = 0; i < 2; i++)
+            @for (int i = 1; i < 3; i++)
             {
                 <div class="rounded-border-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                     <div class="justify-between">

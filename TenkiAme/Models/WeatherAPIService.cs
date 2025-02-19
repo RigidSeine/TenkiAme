@@ -85,7 +85,9 @@ namespace TenkiAme.Models
         [HttpGet]
         public async Task<SunriseSunsetResponse> GetSunriseSunset(string location = "Wellington")
         {
+            
             SunriseSunsetResponse sunriseSunsetResponse = new SunriseSunsetResponse();
+            
             //Set the API key to nothing
             HttpClient.DefaultRequestHeaders.Add("x-api-key", "");
 
@@ -98,11 +100,13 @@ namespace TenkiAme.Models
                 NullValueHandling = NullValueHandling.Ignore
             };
 
+            int numOfDaysRetrieved = 2;
+
             //Send the request to the API using the provided location and today and tomorrow
             using (var response = await HttpClient.GetAsync(new Uri("https://api.sunrisesunset.io/json?lat=" + locCoords.Lat 
                                                                     + "&lng=" + locCoords.Lon 
                                                                     + "&date_start=" + DateTime.Today.ToString("yyyy-MM-dd") 
-                                                                    + "&date_end=" + DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")
+                                                                    + "&date_end=" + DateTime.Today.AddDays(numOfDaysRetrieved).ToString("yyyy-MM-dd")
                                                                     )
                                                             )
             )
