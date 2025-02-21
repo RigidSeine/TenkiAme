@@ -62,6 +62,7 @@ namespace TenkiAme.DataTransferObjects
             }
         }
 
+        //Debug function
         public string PrintToPage()
         {
             var str = "Date: " + CalendarDate.Date.ToString("dd MMM") + 
@@ -71,6 +72,29 @@ namespace TenkiAme.DataTransferObjects
 
             return str;
 
+        }
+
+        //Debug function
+        public string PrintAllValues()
+        {
+            var str = "";
+
+            foreach (var hour in WeatherHours)
+            {
+                str += "Time: " + hour.Time + "; Temp: " + hour.Temperature + "; Rain: " + hour.Rainfall;
+                if(hour.Temperature == Convert.ToDouble(GetMaxTemperature()))
+                {
+                    str += " !!MAX TEMP!!";
+                }
+                else if (hour.Temperature == Convert.ToDouble(GetMaxTemperature()))
+                {
+                    str += " !!MIN TEMP!!";
+                }
+
+                    str += '\n';
+            }
+
+            return str;
         }
     }
 }
