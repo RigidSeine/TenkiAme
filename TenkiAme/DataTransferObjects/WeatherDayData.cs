@@ -50,6 +50,11 @@ namespace TenkiAme.DataTransferObjects
             return CalendarDate.Date.ToString("dd MMM");
         }
 
+        public string GetDayofWeek()
+        {
+            return CalendarDate.Date.DayOfWeek.ToString();
+        }
+
         public string GetWeatherImage()
         {
             if (WeatherHours.Any(weatherHour => weatherHour.Rainfall >= 1.0))
@@ -82,6 +87,7 @@ namespace TenkiAme.DataTransferObjects
             foreach (var hour in WeatherHours)
             {
                 str += "Time: " + hour.Time + "; Temp: " + hour.Temperature + "; Rain: " + hour.Rainfall;
+                
                 if(hour.Temperature == Convert.ToDouble(GetMaxTemperature()))
                 {
                     str += " !!MAX TEMP!!";
@@ -90,8 +96,9 @@ namespace TenkiAme.DataTransferObjects
                 {
                     str += " !!MIN TEMP!!";
                 }
+               
+                str += '\n';
 
-                    str += '\n';
             }
 
             return str;

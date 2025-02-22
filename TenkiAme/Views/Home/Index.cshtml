@@ -54,7 +54,7 @@
                 <div class="rounded-border-xl border bg-card relative flex wid-full flex-col justify-between overflow-hidden">
                     <div class="justify-between">
                         <div class="flex justify-between p-3 font-weight-525">
-                            <span>@Model.WeatherDays[i].GetFormattedCalendarDate()</span>
+                            <span>@Model.WeatherDays[i].GetFormattedCalendarDate() @Model.WeatherDays[i].GetDayofWeek()</span> 
                         </div>
                         <div class="flex-col justify-between p-3">
                             <span class="font-bold">@Model.WeatherDays[i].GetMaxTemperature()°C</span>
