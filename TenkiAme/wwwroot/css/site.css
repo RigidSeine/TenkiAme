@@ -63,14 +63,12 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-.navbar {
+.tenkiame-navbar {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
 }
 
 a.navbar-brand {
@@ -361,63 +359,48 @@ button.accept-policy {
 .vl-red {
     height: 99px;
     width: 8px;
-    position: absolute;
-    right: 29%;
-    top: 0;
     background-color: #fe0902;
 }
 
 .vl-white {
     height: 99px;
     width: 8px;
-    position: absolute;
-    right: 30%;
-    top: 0;
+
     background-color: #eff7ff;
 }
 
 .vl-blue {
     height: 99px;
     width: 8px;
-    position: absolute;
-    right: 31%;
-    top: 0;
+
     background-color: #0380fa;
 }
 
 .vl-green {
     height: 99px;
     width: 8px;
-    position: absolute;
-    right: 32%;
-    top: 0;
+
     background-color: #63ec00;
 }
 
 .vl-orange {
     height: 99px;
     width: 8px;
-    position: absolute;
-    right: 33%;
-    top: 0;
+
     background-color: #eba200;
 }
 
 .vl-turquoise {
     height: 99px;
     width: 8px;
-    position: absolute;
-    right: 34%;
-    top: 0;
+
     background-color: #4afffc;
 }
 
 .vl-gold {
     height: 99px;
     width: 8px;
-    position: absolute;
-    right: 35%;
-    top: 0;
+
     background-color: #ffce12;
 }
 
