@@ -72,20 +72,22 @@ body {
 }
 
 a.navbar-brand {
-    white-space: normal;
+    white-space: nowrap;
     text-align: center;
     word-break: break-all;
+    word-wrap: normal;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
-    margin-right: 1rem;
-    font-size: 3rem;
-    font-family: 'Century Schoolbook';
-    text-decoration: none;
+    margin-left: 1rem;
+    font-size: 60px;
+    font-family: Minerva Modern Bold;
     color: white;
-    letter-spacing: 2px;
-    -webkit-text-stroke-width: 0.1rem;
-    -webkit-text-stroke-color: black;
-    text-shadow: 2px 4px 2px rgba(0, 0, 0, 1);
+    letter-spacing: -3px;
+    -webkit-text-stroke: 2.5px black;
+}
+
+a.navbar-brand:hover {
+    text-shadow: 0px 2.5px 0px black;
 }
 
 @media (min-width: 768px) {
