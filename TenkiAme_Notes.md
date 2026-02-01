@@ -310,6 +310,13 @@ WantedBy=multi-user.target
 # Installing Certbot
 - Certbot automatically renews your certificates for you and can even change your nginx conf file, just go to https://certbot.eff.org/ and choose what system and web server software you're using. Instructions for installation will appear afterwards.
 
+# Publishing the App Directly to Docker Hub
+- By default, you'll likely run into an error saying that the *"registry for `registry.hub.docker.com/<username>` is not recognised".* after creating a publish profile (following the Publish wizard).
+- After the profile is created, go to your project folder and head to `Properties\PublishProfiles` e.g. `TenkiAme\Properties\PublishProfiles` and edit the profile such that:
+  - The `RegistryUrl` tag just has the domain: `<RegistryUrl>registry.hub.docker.com</RegistryUrl>`
+  - Add in the `ContainerRepository` tag with target repo's name - in my case it's `<username>/<project name>` e.g. `<ContainerRepository>holyshiznicks/tenkiame</ContainerRepository>`\
+- Then try republishing.
+
 ## ERRORS ENCOUNTERED + Change log
 - **ERR_SSL_VERSION_OR_CIPHER_MISMATCH** - this later morphed into TOO_MANY_REDIRECTS upon revisiting the problem after a few hours.
 - https://certbot.eff.org/pages/help contains links for debugging the connection issue.
@@ -342,3 +349,5 @@ WantedBy=multi-user.target
   - The solution that did work this time around was to update Visual Studio Installer.
 - **MSB3021 - Unable to copy file source to destination. Access to the path destination is denied.**
   - Check Avast antivirus settings. Avast might be quarantining/adding protection around files it doesn't need to.
+- *"registry for `registry.hub.docker.com/<username>` is not recognised".*
+  - See [Publishing the App Directly to Docker Hub](#publishing-the-app-directly-to-docker-hub)
