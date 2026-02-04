@@ -1,0 +1,14 @@
+name: tenkiame
+
+services:
+  tenkiame:
+    image: holyshiznicks/tenkiame:latest
+    restart: always
+    ports: 
+      - '80:8080'
+    env_file:
+      - '.env'
+    # volumes:
+    #   - hostPath:/app/Logs:rw              #Mount the host's server logs so that logs written in the container can persist
+    #   - /etc/timezone:/etc/timezone:ro    #Mount the host's timezone settings
+    #   - /etc/localtime:/etc/localtime:ro  #Mount the host's localtime settings
