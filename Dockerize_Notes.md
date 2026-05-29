@@ -16,3 +16,15 @@
 - This keeps the container running allowing for browsing of files.
 ## No Main() in .Net generated dockerfile
 - See https://medium.com/@jakubrzepka/building-an-asp-net-8-web-api-docker-image-container-8a64f8635275
+- 
+# Dockerising the Remaining App
+- TenkiAme was not moved over to a Docker container, and remained as an active Linux service on the VM.
+- Therefore, the first step to ensuring portability was to put together the Dockerfile and Docker Compose file.
+- This involved altering the automatically generated Dockerfile (by .NET) since it's generated in a broken way.
+- The Docker Compose file is handy since it's easy to write and allows for the definition of environment variables and mounted volumes (e.g. usage of .env files and mounting of timezone config files.) 
+
+
+### Troubleshooting
+#### Error 500
+- Could be due to .env file being unmounted.
+- Try using `docker compose restart`.
