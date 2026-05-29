@@ -371,3 +371,4 @@ FodyWeavers.xsd
 ssh_command.txt
 
 *.ppk
+/stash
