@@ -8,10 +8,10 @@ jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
     env:
-      - dockerfile: ./Dockerfile
-      - image: hub.docker.com/repositories/${{ vars.DOCKERHUB_USERNAME }}/tenkiame
-      - tag: ${{ vars.DOCKERHUB_USERNAME }}/tenkiame:latest
-      - build_context: . 
+      dockerfile: ./Dockerfile
+      image: hub.docker.com/repositories/${{ vars.DOCKERHUB_USERNAME }}/tenkiame
+      tag: ${{ vars.DOCKERHUB_USERNAME }}/tenkiame:latest
+      build_context: . 
     
     # Repo files permissions
     permissions:
