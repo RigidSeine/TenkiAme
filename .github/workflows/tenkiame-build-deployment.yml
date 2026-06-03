@@ -41,7 +41,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working_directory: "${{ vars.MAIN_CONTEXT_DIR}}"
+        working-directory: "${{ vars.MAIN_CONTEXT_DIR}}"
 
     steps:
       - name: Checkout repository
