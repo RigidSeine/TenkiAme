@@ -41,7 +41,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: "${{ vars.MAIN_CONTEXT_DIR}}"
+        working-directory: "${{ vars.MAIN_CONTEXT_DIR }}"
 
     steps:
       - name: Checkout repository
@@ -63,8 +63,8 @@ jobs:
           username: ${{ secrets.HOST_USERNAME }}
           key: ${{ secrets.HOST_KEY }}
           port: ${{ secrets.PORT }}
-          source: "tenkiame-docker-compose.yml,./.env"
-          target: "${{ secrets.TENKIAME_DIR}}"
+          source: "./tenkiame-docker-compose.yml,./.env"
+          target: "${{ secrets.TENKIAME_DIR }}"
           strip_components: 1
 
 
