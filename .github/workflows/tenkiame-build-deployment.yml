@@ -12,7 +12,7 @@ jobs:
       image: hub.docker.com/repositories/${{ vars.DOCKERHUB_USERNAME }}/tenkiame
       tag: ${{ vars.DOCKERHUB_USERNAME }}/tenkiame:latest
       build_context: ${{ github.workspace }}${{ vars.MAIN_CONTEXT_DIR }}
-    
+
     # Repo files permissions
     permissions:
       contents: read
