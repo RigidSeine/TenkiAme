@@ -55,6 +55,9 @@ jobs:
 
       - name: ls 
         run: ls -al  
+      
+      - name: pwd
+        run: pwd
 
       - name: Copy files via SCP
         uses: appleboy/scp-action@v1
@@ -63,7 +66,7 @@ jobs:
           username: ${{ secrets.HOST_USERNAME }}
           key: ${{ secrets.HOST_KEY }}
           port: ${{ secrets.PORT }}
-          source: "tenkiame-docker-compose.yml"
+          source: "./tenkiame-docker-compose.yml,./.env"
           target: "${{ secrets.TENKIAME_DIR }}"
 
 
