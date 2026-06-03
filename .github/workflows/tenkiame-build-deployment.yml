@@ -49,7 +49,7 @@ jobs:
           username: ${{ secrets.HOST_USERNAME }}
           key: ${{ secrets.HOST_KEY }}
           port: ${{ secrets.PORT }}
-          source: "./docker-compose.yml"
+          source: "${{ vars.MAIN_CONTEXT_DIR}}/tenkiame-docker-compose.yml"
           target: ${{ secrets.TENKIAME_DIR}}
 
       - name: Update .env
