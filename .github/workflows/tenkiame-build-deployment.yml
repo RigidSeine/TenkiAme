@@ -59,7 +59,7 @@ jobs:
       - name: pwd
         run: pwd
       
-      - name:
+      - name: Echo github workspace
         run: "echo ${{ github.workspace }}"
 
       # - name: Copy files via SCP
