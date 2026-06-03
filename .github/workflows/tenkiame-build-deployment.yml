@@ -38,6 +38,11 @@ jobs:
   ssh-and-deploy-containers:
     needs: build-and-push-image #Make the jobs run in sequence
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working_directory: "${{ vars.MAIN_CONTEXT_DIR}}"
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
