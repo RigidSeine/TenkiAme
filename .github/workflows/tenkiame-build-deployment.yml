@@ -41,7 +41,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: "${{ vars.MAIN_CONTEXT_DIR }}"
+        working-directory: "${{ github.workspace }}${{ vars.MAIN_CONTEXT_DIR }}"
 
     steps:
       - name: Checkout repository
@@ -60,26 +60,26 @@ jobs:
         run: pwd
       
       - name: Echo github workspace
-        run: "echo ${{ github.workspace }}"
+        run: "echo ${{ github.workspace }}${{ vars.MAIN_CONTEXT_DIR }}"
 
-      # - name: Copy files via SCP
-      #   uses: appleboy/scp-action@v1
-      #   with:
-      #     host: ${{ secrets.HOST }}
-      #     username: ${{ secrets.HOST_USERNAME }}
-      #     key: ${{ secrets.HOST_KEY }}
-      #     port: ${{ secrets.PORT }}
-      #     source: "/home/runner/work/TenkiAme/TenkiAme/TenkiAme/tenkiame-docker-compose.yml,/home/runner/work/TenkiAme/TenkiAme/TenkiAme/.env"
-      #     target: "${{ secrets.TENKIAME_DIR }}"
+      - name: Copy files via SCP
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.HOST_USERNAME }}
+          key: ${{ secrets.HOST_KEY }}
+          port: ${{ secrets.PORT }}
+          source: "${{ github.workspace }}${{ vars.MAIN_CONTEXT_DIR }}/tenkiame-docker-compose.yml,${{ github.workspace }}${{ vars.MAIN_CONTEXT_DIR }}/.env"
+          target: "${{ secrets.TENKIAME_DIR }}"
 
 
-      # - name: Deploy new container via SSH
-      #   uses: appleboy/ssh-action@v1
-      #   with:
-      #     host: ${{ secrets.HOST }}
-      #     username: ${{ secrets.HOST_USERNAME }}
-      #     key: ${{ secrets.HOST_KEY }}
-      #     port: ${{ secrets.HOST_PORT }}
-      #     script: |
-      #       docker compose -f ${{ secrets.TENKIAME_DIR}}/tenkiame-docker-compose.yml pull
-      #       docker compose -f ${{ secrets.TENKIAME_DIR}}/tenkiame-docker-compose.yml up -d
+      - name: Deploy new container via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.HOST_USERNAME }}
+          key: ${{ secrets.HOST_KEY }}
+          port: ${{ secrets.HOST_PORT }}
+          script: |
+            docker compose -f ${{ secrets.TENKIAME_DIR}}/tenkiame-docker-compose.yml pull
+            docker compose -f ${{ secrets.TENKIAME_DIR}}/tenkiame-docker-compose.yml up -d
