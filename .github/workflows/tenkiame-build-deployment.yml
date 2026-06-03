@@ -47,14 +47,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: ls 
-        run: ls -al  
-
       - name: Update .env
         run: |
           touch -m ./.env
           echo ${{ secrets.METS_SECRET_NAME }}=${{ secrets.METS_SECRET_VALUE }} > ./.env
           echo ${{ secrets.NW_SECRET_NAME }}=${{ secrets.NW_SECRET_VALUE }} >> ./.env
+
+      - name: ls 
+        run: ls -al  
 
       - name: Copy files via SCP
         uses: appleboy/scp-action@v1
