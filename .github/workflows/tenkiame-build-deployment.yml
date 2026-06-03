@@ -44,7 +44,13 @@ jobs:
 
       - name: pwd 
         run: pwd  
-        
+
+      - name: Update .env
+        run: |
+          touch -m ./.env
+          echo ${{ secrets.METS_SECRET_NAME }}=${{ secrets.METS_SECRET_VALUE }} > ./.env
+          echo ${{ secrets.NW_SECRET_NAME }}=${{ secrets.NW_SECRET_VALUE }} >> ./.env
+
       - name: Copy files via SCP
         uses: appleboy/scp-action@v1
         with:
@@ -52,15 +58,10 @@ jobs:
           username: ${{ secrets.HOST_USERNAME }}
           key: ${{ secrets.HOST_KEY }}
           port: ${{ secrets.PORT }}
-          source: "${{ vars.MAIN_CONTEXT_DIR}}/tenkiame-docker-compose.yml"
+          source: "${{ vars.MAIN_CONTEXT_DIR}}/tenkiame-docker-compose.yml,./.env"
           target: "${{ secrets.TENKIAME_DIR}}"
-          strip_components: true
+          strip_components: yes
 
-      - name: Update .env
-        run: |
-          touch -m ${{ secrets.TENKIAME_DIR}}/.env
-          echo ${{ secrets.METS_SECRET_NAME }}=${{ secrets.METS_SECRET_VALUE }} > ${{ secrets.TENKIAME_DIR}}/.env
-          echo ${{ secrets.NW_SECRET_NAME }}=${{ secrets.NW_SECRET_VALUE }} >> ${{ secrets.TENKIAME_DIR}}/.env
 
       - name: Deploy new container via SSH
         uses: appleboy/ssh-action@v1
