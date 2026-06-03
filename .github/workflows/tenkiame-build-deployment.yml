@@ -65,7 +65,6 @@ jobs:
           port: ${{ secrets.PORT }}
           source: "./tenkiame-docker-compose.yml,./.env"
           target: "${{ secrets.TENKIAME_DIR }}"
-          strip_components: 1
 
 
       - name: Deploy new container via SSH
