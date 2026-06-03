@@ -28,3 +28,13 @@
 #### Error 500
 - Could be due to .env file being unmounted.
 - Try using `docker compose restart`.
+
+#### Tar: Empty Archive
+- Tar is failing to find files to compress.
+- If you change the working directory, then appleboy/scp-action will be extremely reliant on absolute paths for your source files.
+```    
+defaults:
+      run:
+        shell: bash
+        working-directory: "${{ vars.MAIN_CONTEXT_DIR }}"
+```
