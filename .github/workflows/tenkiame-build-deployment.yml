@@ -8,10 +8,10 @@ jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
     env:
-      dockerfile: ./Dockerfile
+      dockerfile: ${{ vars.MAIN_CONTEXT_DIR}}/Dockerfile
       image: hub.docker.com/repositories/${{ vars.DOCKERHUB_USERNAME }}/tenkiame
       tag: ${{ vars.DOCKERHUB_USERNAME }}/tenkiame:latest
-      build_context: . 
+      build_context: ${{ vars.MAIN_CONTEXT_DIR}}
     
     # Repo files permissions
     permissions:
@@ -30,7 +30,7 @@ jobs:
       - name: Build and push Chat-Less's Docker images
         uses: docker/build-push-action@v6
         with:
-          context: "{{defaultContext}}"
+          context: ${{ env.build_context }}
           file: ${{ env.dockerfile }}
           push: true
           tags: ${{ env.tag }}
