@@ -63,7 +63,7 @@ jobs:
           username: ${{ secrets.HOST_USERNAME }}
           key: ${{ secrets.HOST_KEY }}
           port: ${{ secrets.PORT }}
-          source: "tenkiame-docker-compose.yml,.env"
+          source: ".env"
           target: "${{ secrets.TENKIAME_DIR }}"
 
 
